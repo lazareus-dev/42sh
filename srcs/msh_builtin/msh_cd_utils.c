@@ -25,6 +25,10 @@ static int	get_opt(char **args, int *i, int *opt)
 	while (args[*i] && args[*i][0] == '-' && args[*i][1])
 	{
 		*opt = 1;
+		if (args[*i][*opt] == '-' && args[*i][*opt + 1])
+			return (-1);
+		if (args[*i][*opt] == '-')
+			return (++option);
 		while (args[*i] && args[*i][*opt])
 		{
 			if (args[*i][*opt] != 'P' && args[*i][*opt] != 'L')
