@@ -100,4 +100,5 @@ void	init_input(t_input *input)
 	init_input_compl(input);
 	input->quoted = UNQUOTED;
 	input->escape = UNQUOTED;
+	input->prompt = PROMPT;
 }

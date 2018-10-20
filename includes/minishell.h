@@ -48,7 +48,8 @@ typedef enum		e_optype
 	DLESSDASH,
 	CLOBBER,
 	AND,
-	DSEMI
+	DSEMI,
+	PROMPT
 }					t_optype;
 
 typedef enum		e_toktype
@@ -190,6 +191,7 @@ typedef struct		s_input
 	int				len_prompt;
 	int				quoted;
 	int				escape;
+	int				prompt;
 	t_compl			compl;
 }					t_input;
 
