@@ -102,9 +102,17 @@ int			append_arg_to_hist(t_history *history)
 
 int			print_arg_delete_last(t_history *history)
 {
-	t_hist *new_last;
+	t_hist	*new_last;
+	int		i;
 
-	ft_putendl(history->opt_args[0]);
+	if (!history->opt_args)
+		return (1);
+	i = 0;
+	while (history->opt_args[i])
+	{
+		ft_putendl(history->opt_args[i]);
+		i++;
+	}
 	new_last = history->last->prev;
 	ft_strdel(&history->last->line);
 	free(history->last);
