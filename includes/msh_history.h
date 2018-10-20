@@ -103,6 +103,7 @@ void				free_history(t_history **history);
 void				free_histlst(t_history **history);
 t_hist				*new_hist(char *line);
 void				push_back_hist(t_history **history, t_hist *node);
+void				backup_history(t_shell *shell);
 
 /*
 **	History built-in functions

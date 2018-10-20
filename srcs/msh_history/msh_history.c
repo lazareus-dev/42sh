@@ -13,6 +13,24 @@
 
 #include "../../includes/minishell.h"
 #include "../../includes/msh_history.h"
+#include "../../includes/msh_var_utils.h"
+
+void	backup_history(t_shell *shell)
+{
+	int		hist_fd;
+	char	*file;
+	t_hist	*hist;
+
+	file = msh_getenv("HISTFILE", shell);
+	if ((hist_fd = ft_get_fd_write(file, FILE_TRUNC)) < 0)
+		return ;
+	hist = shell->history->first;
+	while (hist)
+	{
+		ft_putendl_fd(hist->line, hist_fd);
+		hist = hist->next;
+	}
+}
 
 int		add_hist_to_table(t_history **history, char *line)
 {
