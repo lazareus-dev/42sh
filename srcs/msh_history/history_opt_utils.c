@@ -44,7 +44,7 @@ static int	get_opt_offset(char **av, t_shell *shell)
 	return (0);
 }
 
-int	parse_hopt(char **av, t_shell *shell)
+static int	parse_hopt(char **av, t_shell *shell)
 {
 	char opt;
 

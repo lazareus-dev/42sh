@@ -27,7 +27,6 @@ static void	fill_cmd_tab(t_cmds *node, t_token *tok, int *index)
 	if (tok->prev && tok->prev->type == REDIRECTION)
 		return ;
 	cmd_arg = ft_strdup(tok->token);
-	// remove_quoting(&cmd_arg);
 	node->cmd[(*index)] = cmd_arg;
 	(*index)++;
 }

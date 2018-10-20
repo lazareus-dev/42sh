@@ -12,9 +12,36 @@
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include "../../includes/msh_lexer.h"
 #include "../../includes/msh_parser.h"
 
-int			is_escaped(char *needle, char *token)
+int			check_if_quoted(char *dollar, char *token, int escape, int quoted)
+{
+	int		i;
+	int		ret;
+	char	c;
+
+	i = 0;
+	while ((c = token[i]) && (token + i) != dollar)
+	{
+		if (c == '\\' && quoted != SQUOTE)
+			escape = !escape;
+		else if ((c == '\"' || c == '\'') && !escape)
+		{
+			if (quoted && quoted == is_quoting_char(c))
+				quoted = UNQUOTED;
+			else if (!quoted)
+				quoted = is_quoting_char(c);
+		}
+		if (c != '\\' && quoted != SQUOTE)
+			escape = 0;
+		i++;
+	}
+	ret = quoted ? quoted : escape;
+	return (ret);
+}
+
+static int	is_escaped(char *needle, char *token)
 {
 	int		escaped;
 
@@ -30,7 +57,7 @@ int			is_escaped(char *needle, char *token)
 	return (escaped);
 }
 
-void		expand_tilde_dollar_cmd(char **word, t_shell *shell)
+static void	expand_tilde_dollar_cmd(char **word, t_shell *shell)
 {
 	char	*tilde;
 
