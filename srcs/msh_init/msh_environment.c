@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   msh_environment.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: tle-coza <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: vischlum <vischlum@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/17 17:55:22 by tle-coza     #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/17 18:27:34 by tle-coza    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/20 18:13:33 by vischlum    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,6 +52,7 @@ void	init_default_var(t_shell *shell)
 	if (!getenv("PATH"))
 		msh_setenv(path, shell);
 	init_shlvl(shell);
+	msh_setenv("CLICOLOR=1", shell);
 	ft_strdel(&getpwd);
 	ft_strdel(&pwd);
 	ft_strdel(&path);
