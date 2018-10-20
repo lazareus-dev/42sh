@@ -138,7 +138,7 @@ typedef struct		s_history
 	int				index_at_startup;
 	int				opt;
 	char			*opt_offset;
-	char			**opt_arg;
+	char			**opt_args;
 	char			*last_matchd_word;
 }					t_history;
 

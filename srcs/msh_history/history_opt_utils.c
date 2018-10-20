@@ -22,7 +22,7 @@ static char	**get_opt_args(char **av)
 	i = 1;
 	while (av[i])
 		i++;
-	opt_args = (char **)malloc(sizeof(char *) * i);
+	opt_args = ft_strtab_alloc(i);
 	if (!opt_args)
 		return (NULL);
 	i = 1;

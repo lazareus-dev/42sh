@@ -99,5 +99,6 @@ int		msh_history(char **av, t_shell *shell)
 		ret = history_options(av, shell);
 	else
 		ret = 0;
+	free(shell->history->opt_args);
 	return (ret);
 }
