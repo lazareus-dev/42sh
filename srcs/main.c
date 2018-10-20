@@ -40,7 +40,8 @@ int					get_user_input(t_shell *shell)
 	{
 		while (check_line_integrity(&shell->input))
 		{
-			reprompt(shell, shell->input.quoted);
+			shell->input.prompt = shell->input.quoted;
+			reprompt(shell, shell->input.prompt);
 			ret = input_loop(shell);
 			if (ret == EOF)
 			{

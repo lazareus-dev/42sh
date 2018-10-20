@@ -95,7 +95,8 @@ t_tokenlst		*msh_lexer(t_tokenlst *head, t_shell *shell)
 	while ((read_again = check_tokenlst(head)) && !eof && !shell->sigint)
 	{
 		init_input(&shell->input);
-		prompt_line_continuation(read_again);
+		shell->input.prompt = read_again;
+		prompt_line_continuation(shell->input.prompt);
 		if (get_user_input(shell) == EOF)
 			eof = 1;
 		tokenize(head, shell->input.line);

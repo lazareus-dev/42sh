@@ -24,9 +24,9 @@
 # define GET_ATTR_FAIL	3
 
 void	*msh_cdenverror(int issue);
-int		msh_notdir(char **path);
-int		msh_nofile(char **path);
-int		msh_noaccess(char **path);
+int		msh_notdir(char **path, char *arg);
+int		msh_nofile(char **path, char *arg);
+int		msh_noaccess(char **path, char *arg);
 int		msh_setenverror(t_shell *shell);
 int		cmd_error(char *cmd);
 int		fork_error(int pid);

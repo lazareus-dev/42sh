@@ -27,7 +27,10 @@ static void	update_window(t_shell *shell, int nb_col, int nb_lin)
 		else
 			util_move(0, shell->input.start.y);
 		tputs(tgetstr("cd", NULL), 1, ft_putchar_term);
-		prompt(shell);
+		if (shell->input.prompt == PROMPT)
+			prompt(shell);
+		else
+			reprompt(shell, shell->input.prompt);
 		get_cursor_position(shell, INIT_COORD);
 		put_line(shell->input.buffer);
 		get_cursor_position(shell, CURRENT_LINE_END_LIMIT);
@@ -63,5 +66,6 @@ void		window_size(void)
 			check_size(shell, shell->input.buffer, shell->input.start.x);
 		}
 	}
+	get_cursor_position(shell, CURRENT_LINE_END_LIMIT);
 	update_window(shell, wind.ws_col, wind.ws_row);
 }

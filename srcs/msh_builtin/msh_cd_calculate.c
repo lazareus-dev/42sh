@@ -29,6 +29,8 @@ static int	len_cpy(char *str)
 			ret = i;
 		i++;
 	}
+	if (ret == 0)
+		ret++;
 	return (ret);
 }
 
@@ -42,14 +44,15 @@ static void	browse_matrice(char **matrice, char *tmp_path)
 		if (!ft_strcmp(matrice[i], ".."))
 		{
 			ft_memmove(tmp_path + len_cpy(tmp_path),
-				tmp_path + len_cpy(tmp_path) + len_cpy(tmp_path),
+				tmp_path + ft_strlen(tmp_path),
 				len_cpy(tmp_path));
 		}
 		else
 		{
 			if (ft_strcmp(matrice[i], "."))
 			{
-				ft_memcpy(tmp_path + ft_strlen(tmp_path), "/", 1);
+				if (tmp_path[ft_strlen(tmp_path) - 1] != '/')
+					ft_memcpy(tmp_path + ft_strlen(tmp_path), "/", 1);
 				ft_memcpy(tmp_path + ft_strlen(tmp_path), matrice[i],
 					ft_strlen(matrice[i]));
 			}

@@ -31,7 +31,7 @@ static void	execute_cd(t_cd *cd, t_shell *shell, char *path)
 	else
 		cd->final_pwd = get_pwd();
 	ft_setenv("PWD", cd->final_pwd, &shell->env);
-	cd->prev_dir ? ft_putendl(path) : NULL;
+	cd->prev_dir ? ft_putendl(cd->final_pwd) : NULL;
 }
 
 /*
@@ -42,18 +42,20 @@ int			msh_cd(char **args, t_shell *shell)
 {
 	t_cd	cd;
 	char	*path;
+	int		i;
 
-	if (init_cd(&cd, args))
+	i = 0;
+	if (init_cd(&cd, args, &i))
 		return (1);
 	path = resolve_path(&cd, shell);
 	if (path == NULL)
 		return (1);
 	if (access(path, F_OK))
-		return (msh_nofile(&path));
+		return (msh_nofile(&path, args[i]));
 	if (!ft_is_dir(path))
-		return (msh_notdir(&path));
+		return (msh_notdir(&path, args[i]));
 	if (access(path, X_OK))
-		return (msh_noaccess(&path));
+		return (msh_noaccess(&path, args[i]));
 	execute_cd(&cd, shell, path);
 	ft_strdel(&path);
 	clean_cd(&cd);

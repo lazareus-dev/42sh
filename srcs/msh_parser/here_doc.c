@@ -64,7 +64,8 @@ void	get_here_doc(t_redir *redir, t_shell *shell)
 	while (101)
 	{
 		ft_strdel(&shell->input.line);
-		reprompt(shell, DLESS);
+		shell->input.prompt = DLESS;
+		reprompt(shell, shell->input.prompt);
 		if (input_loop(shell) == EOF || shell->sigint)
 			break ;
 		line = shell->input.line;
