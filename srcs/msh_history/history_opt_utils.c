@@ -64,8 +64,12 @@ int	get_hopt(char **av, t_shell *shell)
 	while (*av)
 	{
 		if (av[0][0] == '-')
+		{
 			if (parse_hopt(av, shell))
 				return (1);
+		}
+		else
+			return (0);
 		av++;
 	}
 	opt = shell->history->opt;
