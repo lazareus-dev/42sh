@@ -25,26 +25,26 @@ void	*msh_cdenverror(int issue)
 	return (NULL);
 }
 
-int		msh_notdir(char **path)
+int		msh_notdir(char **path, char *arg)
 {
 	write(2, "cd: not a directory: ", 21);
-	ft_putendl_fd(*path, 2);
+	ft_putendl_fd(arg, 2);
 	ft_strdel(path);
 	return (1);
 }
 
-int		msh_nofile(char **path)
+int		msh_nofile(char **path, char *arg)
 {
 	write(2, "cd: no such file or directory: ", 31);
-	ft_putendl_fd(*path, 2);
+	ft_putendl_fd(arg, 2);
 	ft_strdel(path);
 	return (1);
 }
 
-int		msh_noaccess(char **path)
+int		msh_noaccess(char **path, char *arg)
 {
 	write(2, "cd: permission denied: ", 23);
-	ft_putendl_fd(*path, 2);
+	ft_putendl_fd(arg, 2);
 	ft_strdel(path);
 	return (1);
 }

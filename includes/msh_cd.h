@@ -41,7 +41,7 @@ char			*resolve_path(t_cd *cd, t_shell *shell);
 /*
 **	msh_cd_utils.c
 */
-int				init_cd(t_cd *cd, char **args);
+int				init_cd(t_cd *cd, char **args, int *i);
 void			clean_cd(t_cd *cd);
 
 #endif
