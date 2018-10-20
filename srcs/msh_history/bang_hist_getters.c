@@ -37,7 +37,10 @@ char	*get_match_hist_begin(char *needle, t_history *history)
 	while (i--)
 	{
 		if (ft_match(history->hash_hist[i], needle))
+		{
 			match = history->hash_hist[i];
+			break ;
+		}
 	}
 	return (match);
 }
