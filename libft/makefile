@@ -1,16 +1,25 @@
 # **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tle-coza <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/09 11:09:59 by tle-coza          #+#    #+#              #
-#    Updated: 2018/10/03 15:16:08 by tle-coza    ###    #+. /#+    ###.fr      #
-#                                                                              #
+#                                                           LE - /             #
+#                                                               /              #
+#    makefile                                         .::    .:/ .      .::    #
+#                                                  +:+:+   +:    +:  +:+:+     #
+#    By: vischlum <vischlum@student.le-101.fr>      +:+   +:    +:    +:+      #
+#                                                  #+#   #+    #+    #+#       #
+#    Created: 2017/11/09 11:09:59 by tle-coza     #+#   ##    ##    #+#        #
+#    Updated: 2018/10/20 11:27:29 by vischlum    ###    #+. /#+    ###.fr      #
+#                                                          /                   #
+#                                                         /                    #
 # **************************************************************************** #
-
 NAME	= libft.a
+
+UNAME := $(shell uname) # Detect the current OS
+#$(info OS="$(UNAME)")
+ifeq ($(UNAME),Darwin ) # Mac OS X
+	CC = gcc
+endif
+ifeq ($(UNAME),Linux ) # Weird as it seems, the space is necessary
+	CC = clang
+endif
 
 FLAGS	= -Wall -Wextra -Werror -O2
 
@@ -71,7 +80,7 @@ $(NAME): $(OBJS) $(PFOBJS)
 	ar crs $@ $^
 
 %.o: %.c
-	@gcc -O2 $(INC) $(FLAGS) -c $^ -o $@
+	@$(CC) -O2 $(INC) $(FLAGS) -c $^ -o $@
 
 clean:
 	/bin/rm -rf $(OBJS) $(PFOBJS)

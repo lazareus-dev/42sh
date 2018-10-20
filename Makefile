@@ -3,15 +3,26 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: vbranco <vbranco@le-101.fr>                +:+   +:    +:    +:+      #
+#    By: vischlum <vischlum@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/23 19:11:16 by tle-coza     #+#   ##    ##    #+#        #
-#    Updated: 2018/10/15 11:17:46 by tle-coza    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/20 11:21:39 by vischlum    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 NAME        =   42sh
+
+UNAME := $(shell uname) # Detect the current OS
+#$(info OS="$(UNAME)")
+ifeq ($(UNAME),Darwin ) # Mac OS X
+	CC = gcc
+	TERMCAP_LNK = -ltermcap
+endif
+ifeq ($(UNAME),Linux ) # Weird as it seems, the space is necessary
+	CC = clang
+	TERMCAP_LNK = -lncurses
+endif
 
 FLAGS		= 	-Wall -Wextra -Werror -O2
 
@@ -73,11 +84,11 @@ L_FT        =   ./libft
 
 LIB_LNK     =   -L $(L_FT) -l ft
 
-TERMCAP_LNK =	-ltermcap
+#TERMCAP_LNK =	-ltermcap
 
 LIB_INC     =   -I $(L_FT)/libft.h
 
-CC			=	gcc
+#CC			=	gcc
 
 .PHONY: all clean fclean re
 

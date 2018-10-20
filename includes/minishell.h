@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   minishell.h                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: vbranco <vbranco@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: vischlum <vischlum@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 18:36:14 by tle-coza     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/17 18:24:12 by vbranco     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/20 11:23:41 by vischlum    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,6 +16,8 @@
 
 # include "../libft/ft_printf/ft_printf.h"
 # include <termios.h>
+# include <signal.h>
+# include <sys/wait.h>
 
 # define BUFFSIZE 32
 
