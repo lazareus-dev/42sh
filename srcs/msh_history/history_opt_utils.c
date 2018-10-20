@@ -73,7 +73,7 @@ static int	parse_hopt(char **av, t_shell *shell)
 	return (0);
 }
 
-int	get_hopt(char **av, t_shell *shell)
+int			get_hopt(char **av, t_shell *shell)
 {
 	int opt;
 
