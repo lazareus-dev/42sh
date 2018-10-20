@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_printf.h                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: tle-coza <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: vischlum <vischlum@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/09 15:02:45 by tle-coza     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/08 15:20:45 by tle-coza    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/20 11:17:10 by vischlum    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,7 @@
 # include <wctype.h>
 # include <wchar.h>
 # include <unistd.h>
+# include <stdint.h>
 # include "../libft.h"
 
 # define BASE_XLO	"0123456789abcdef"

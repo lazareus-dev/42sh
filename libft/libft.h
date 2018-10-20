@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libft.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: tle-coza <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: vischlum <vischlum@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/11/24 18:28:36 by tle-coza     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 15:16:33 by tle-coza    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/20 11:18:08 by vischlum    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <wchar.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include "./ft_printf/ft_printf.h"
 
 # define ALPHABET_SIZE	26
