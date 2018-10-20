@@ -37,6 +37,7 @@ static int	pipe_cmd(t_cmds *cmd, t_pipe p, t_shell *shell)
 		dup2(p.first, STDIN_FILENO);
 	if (cmd->next && cmd->next->type == S_CMD && p.output == STDOUT_FILENO)
 		dup2(p.fds[WRITE_END], STDOUT_FILENO);
+	msh_expand(cmd, shell);
 	if ((ret = process_redir(cmd)))
 		return (ret);
 	close(p.fds[READ_END]);

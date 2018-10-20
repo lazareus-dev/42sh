@@ -30,7 +30,7 @@ void	detach_cmds_node(t_cmds *del);
 ** Expansion functions
 */
 
-void	msh_expand(t_tokenlst *tokenlst, t_shell *shell);
+void	msh_expand(t_cmds *cmds, t_shell *shell);
 void	expand_tilde_dollar(t_token *token, t_shell *shell);
 char	*expand_tilde_regular(char *str, t_shell *shell);
 void	expand_tilde_assignment(char **str);
