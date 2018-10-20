@@ -69,10 +69,10 @@ int			del_one_hist(t_shell *shell)
 
 int			append_arg_to_hist(t_history *history)
 {
-	if (!history->opt_arg)
+	if (!history->opt_args)
 		return (0);
 	ft_strdel(&history->last->line);
-	history->last->line = ft_strdup(history->opt_arg);
+	history->last->line = ft_strdup(history->opt_args);
 	history->hash_hist[history->nb_node - 1] = history->last->line;
 	return (0);
 }
@@ -85,7 +85,7 @@ int			print_arg_delete_last(t_history *history)
 {
 	t_hist *new_last;
 
-	ft_putendl(history->opt_arg);
+	ft_putendl(history->opt_args);
 	new_last = history->last->prev;
 	ft_strdel(&history->last->line);
 	free(history->last);
