@@ -14,7 +14,7 @@
 #include "../../includes/minishell.h"
 #include "../../includes/msh_parser.h"
 
-int			pipe_error(void)
+int		pipe_error(void)
 {
 	ft_putendl_fd("Pipe ERROR", 2);
 	return (1);
