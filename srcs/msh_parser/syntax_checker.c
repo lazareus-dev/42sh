@@ -39,8 +39,9 @@ static int	check_operator(t_token *tok)
 		return (OPERATOR);
 	if (tok->prev && tok->prev->type != WORD)
 		return (OPERATOR);
-	if (!tok->next || tok->next->type == NEWLINE)
-		return (1);
+	if (tok->optype != SEPARATOR)
+		if (!tok->next || tok->next->type == NEWLINE)
+			return (1);
 	return (0);
 }
 
