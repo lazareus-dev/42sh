@@ -15,7 +15,7 @@
 #include "../../includes/msh_lexer.h"
 #include "../../includes/msh_parser.h"
 
-int			check_if_quoted(char *dollar, char *token, int escape, int quoted)
+int			check_if_quoted(char *dollar, char *token, int *escape, int *quoted)
 {
 	int		i;
 	int		ret;
@@ -24,20 +24,20 @@ int			check_if_quoted(char *dollar, char *token, int escape, int quoted)
 	i = 0;
 	while ((c = token[i]) && (token + i) != dollar)
 	{
-		if (c == '\\' && quoted != SQUOTE)
-			escape = !escape;
-		else if ((c == '\"' || c == '\'') && !escape)
+		if (c == '\\' && *quoted != SQUOTE/* && quoted != DQUOTE*/)
+			*escape = !*escape;
+		else if ((c == '\"' || c == '\'') && !*escape)
 		{
-			if (quoted && quoted == is_quoting_char(c))
-				quoted = UNQUOTED;
-			else if (!quoted)
-				quoted = is_quoting_char(c);
+			if (*quoted && *quoted == is_quoting_char(c))
+				*quoted = UNQUOTED;
+			else if (!*quoted)
+				*quoted = is_quoting_char(c);
 		}
-		if (c != '\\' && quoted != SQUOTE)
-			escape = 0;
+		if (c != '\\' && *quoted != SQUOTE)
+			*escape = 0;
 		i++;
 	}
-	ret = quoted ? quoted : escape;
+	ret = *quoted ? *quoted : *escape;
 	return (ret);
 }
 

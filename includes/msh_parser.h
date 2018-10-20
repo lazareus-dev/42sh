@@ -34,7 +34,7 @@ void	msh_expand(t_cmds *cmds, t_shell *shell);
 char	*expand_tilde_regular(char *str, t_shell *shell);
 void	expand_tilde_assignment(char **str);
 int		ft_expand_dollar(char **str, t_shell *shell);
-int		check_if_quoted(char *dollar, char *token, int escape, int quoted);
+int		check_if_quoted(char *dollar, char *token, int *escape, int *quoted);
 int		remove_quoting(char **str);
 
 /*

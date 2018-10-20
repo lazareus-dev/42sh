@@ -24,8 +24,10 @@ static int	dollar_is_quoted(char *dollar, char *token)
 
 	quoted = 0;
 	escape = 0;
-	ret = check_if_quoted(dollar, token, escape, quoted);
-	if (ret == DQUOTE)
+	ret = check_if_quoted(dollar, token, &escape, &quoted);
+	if (escape && quoted == DQUOTE)
+		ret = 1;
+	else if (quoted == DQUOTE)
 		ret = 0;
 	return (ret);
 }
