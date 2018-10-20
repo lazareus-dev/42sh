@@ -81,15 +81,17 @@ static void	put_suffix(char **output, int suffix, t_compl compl)
 		ft_strcat(*output, "/");
 	else
 	{
-		compl.quoted == 2 ? ft_strcat(*output, "\"") : 0;
-		compl.quoted == 1 ? ft_strcat(*output, "\'") : 0;
+		if (compl.quoted == DQUOTE)
+			ft_strcat(*output, "\"");
+		else if (compl.quoted == SQUOTE)
+			ft_strcat(*output, "\'");
 		if (!compl.middleofword)
 			ft_strcat(*output, " ");
 	}
 }
 
 /*
-**	Add quoting, escaping, last space if file of last slash is file
+**	Add quoting, escaping, last space if file or last slash if dir
 */
 
 void		process_closest_match(char **original, t_compl compl)

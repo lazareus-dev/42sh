@@ -81,6 +81,7 @@ void	init_input_compl(t_input *input)
 	input->compl.is_var = 0;
 	input->compl.max_match_len = 1;
 	input->compl.quoted = 0;
+	input->compl.middleofword = 0;
 }
 
 void	init_input(t_input *input)
