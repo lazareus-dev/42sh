@@ -90,6 +90,6 @@ int		init_history(t_shell *shell)
 	init_hash_hist(&(shell->history));
 	shell->history->opt = 0;
 	shell->history->opt_offset = 0;
-	shell->history->opt_arg = NULL;
+	shell->history->opt_args = NULL;
 	return (0);
 }

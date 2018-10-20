@@ -14,7 +14,27 @@
 #include "../../includes/minishell.h"
 #include "../../includes/msh_history.h"
 
-int	get_opt_offset(char **av, t_shell *shell)
+static char	**get_opt_args(char **av)
+{
+	char	**opt_args;
+	int		i;
+
+	i = 1;
+	while (av[i])
+		i++;
+	opt_args = ft_strtab_alloc(i);
+	if (!opt_args)
+		return (NULL);
+	i = 1;
+	while (av[i])
+	{
+		opt_args[i - 1] = av[i];
+		i++;
+	}
+	return (opt_args);
+}
+
+static int	get_opt_offset(char **av, t_shell *shell)
 {
 	shell->history->opt |= HOPT_D;
 	if (av[0][2])
@@ -24,7 +44,7 @@ int	get_opt_offset(char **av, t_shell *shell)
 	return (0);
 }
 
-int	parse_hopt(char **av, t_shell *shell)
+static int	parse_hopt(char **av, t_shell *shell)
 {
 	char opt;
 
@@ -49,7 +69,7 @@ int	parse_hopt(char **av, t_shell *shell)
 	else
 		return (msh_history_error(av, INVALID_OPT));
 	if (ft_strchr("anrwsp", opt))
-		shell->history->opt_arg = av[1];
+		shell->history->opt_args = get_opt_args(av);
 	return (0);
 }
 
@@ -64,8 +84,12 @@ int	get_hopt(char **av, t_shell *shell)
 	while (*av)
 	{
 		if (av[0][0] == '-')
+		{
 			if (parse_hopt(av, shell))
 				return (1);
+		}
+		else
+			return (0);
 		av++;
 	}
 	opt = shell->history->opt;

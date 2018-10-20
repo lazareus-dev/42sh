@@ -72,7 +72,7 @@ int			ft_exit_shell(void)
 	shell = get_shell();
 	if (!shell)
 		exit(EXIT_FAILURE);
-	append_latest_to_file(shell);
+	backup_history(shell);
 	clear_shell(shell);
 	return (0);
 }

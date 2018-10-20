@@ -38,10 +38,10 @@ t_cmds			*msh_parser(t_tokenlst *tokenlst, t_shell *shell)
 	t_cmds	*cmds;
 	t_token	*tok;
 
+	(void)shell;
 	if (check_syntax(tokenlst))
 		return (NULL);
 	del_token(tokenlst, tokenlst->last);
-	msh_expand(tokenlst, shell);
 	tok = tokenlst->first;
 	cmds = NULL;
 	while (tok)

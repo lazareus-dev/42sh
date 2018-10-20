@@ -38,24 +38,6 @@ int		is_bang_delimiter(char c)
 		|| c == EOF || c == '=' || c == '\n');
 }
 
-void	debug_event(t_event event)
-{
-	ft_putchar('\n');
-	ft_printf("index = %d\n", event.index);
-	ft_printf("needle = |%s|\n", event.needle);
-	ft_printf("hist = |%s|\n", event.hist);
-	if (event.wd_des & WD_DASH)
-		ft_putendl("Range");
-	if (event.wd_des & WD_WILDCARD)
-		ft_putendl("Wildcard");
-	ft_printf("wd_start = %d\n", event.wd_start);
-	ft_printf("wd_end = %d\n", event.wd_end);
-	ft_printf("wd_last = %d\n", event.wd_last_arg);
-	ft_printf("expanded_hist = |%s|\n", event.expanded_event);
-	ft_printf("ev = |%s|\n", event.ev_designator);
-	ft_printf("wd = |%s|\n", event.wd_designator);
-}
-
 int		history_expansion(char **line, char **bang, char *ptr, t_shell *shell)
 {
 	t_event	event;
@@ -82,6 +64,24 @@ int		history_expansion(char **line, char **bang, char *ptr, t_shell *shell)
 	return (ret);
 }
 
+int		ft_count_char_occurences(char *str, char c)
+{
+	int	nb_occurences;
+	int	i;
+
+	nb_occurences = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			nb_occurences++;
+		if (i > 0 && str[i - 1] == c)
+			nb_occurences--;
+		i++;
+	}
+	return (nb_occurences);
+}
+
 /*
 ** Search and replace each <!> in the input stream by
 ** the history event associated.
@@ -92,19 +92,25 @@ int		ft_expand_bang(char **line, t_shell *shell)
 	char	*bang;
 	char	*ptr;
 	int		ret;
+	int		try;
 
 	ret = 0;
+	try = ft_count_char_occurences(*line, '!');
 	bang = *line;
 	while ((bang = ft_strchr(bang, '!')) && !ret)
 	{
 		ptr = bang;
-		if (is_bang_delimiter(*(ptr + 1)))
+		if (is_bang_delimiter(*(ptr + 1))
+		|| (bang != *line && *(bang - 1) == '$'))
 		{
 			bang += 2;
+			try--;
 			continue ;
 		}
 		else
 			ret = history_expansion(line, &bang, ptr, shell);
 	}
+	if (try != 0)
+		ret = -1;
 	return (ret);
 }

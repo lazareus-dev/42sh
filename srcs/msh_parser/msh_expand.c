@@ -12,9 +12,36 @@
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include "../../includes/msh_lexer.h"
 #include "../../includes/msh_parser.h"
 
-int			is_escaped(char *needle, char *token)
+int			check_if_quoted(char *dollar, char *token, int escape, int quoted)
+{
+	int		i;
+	int		ret;
+	char	c;
+
+	i = 0;
+	while ((c = token[i]) && (token + i) != dollar)
+	{
+		if (c == '\\' && quoted != SQUOTE)
+			escape = !escape;
+		else if ((c == '\"' || c == '\'') && !escape)
+		{
+			if (quoted && quoted == is_quoting_char(c))
+				quoted = UNQUOTED;
+			else if (!quoted)
+				quoted = is_quoting_char(c);
+		}
+		if (c != '\\' && quoted != SQUOTE)
+			escape = 0;
+		i++;
+	}
+	ret = quoted ? quoted : escape;
+	return (ret);
+}
+
+static int	is_escaped(char *needle, char *token)
 {
 	int		escaped;
 
@@ -30,31 +57,25 @@ int			is_escaped(char *needle, char *token)
 	return (escaped);
 }
 
-void		expand_tilde_dollar(t_token *token, t_shell *shell)
+static void	expand_tilde_dollar_cmd(char **word, t_shell *shell)
 {
 	char	*tilde;
 
-	if (token->type == WORD)
-		if ((tilde = ft_strchr(token->token, '~'))
-				&& !is_escaped(tilde, token->token))
-			token->token = expand_tilde_regular(token->token, shell);
-	if (token->token && ft_strchr(token->token, '$'))
-		ft_expand_dollar(&(token->token), shell);
+	if ((tilde = ft_strchr(*word, '~')) && !is_escaped(tilde, *word))
+		*word = expand_tilde_regular(*word, shell);
+	if (*word && ft_strchr(*word, '$'))
+		ft_expand_dollar(word, shell);
 }
 
-void		msh_expand(t_tokenlst *tokenlst, t_shell *shell)
+void		msh_expand(t_cmds *cmds, t_shell *shell)
 {
-	t_token	*tmp;
+	int i;
 
-	tmp = tokenlst->first;
-	while (tmp)
+	i = 0;
+	while (cmds->cmd[i])
 	{
-		if (!tmp->token)
-		{
-			tmp = tmp->next;
-			continue ;
-		}
-		expand_tilde_dollar(tmp, shell);
-		tmp = tmp->next;
+		expand_tilde_dollar_cmd(&cmds->cmd[i], shell);
+		remove_quoting(&cmds->cmd[i]);
+		i++;
 	}
 }

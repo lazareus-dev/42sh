@@ -30,13 +30,16 @@ void	util_move(int x, int y)
 
 int		check_for_history_expansion(t_shell *shell)
 {
+	int		ret;
+
 	if (!shell->input.line)
 		return (0);
 	if (ft_strchr(shell->input.line, '!'))
 	{
-		if (ft_expand_bang(&shell->input.line, shell))
+		ret = ft_expand_bang(&shell->input.line, shell);
+		if (ret == 1 || ret == 2)
 			return (1);
-		else
+		else if (ret == 0)
 			ft_putstr(shell->input.line);
 	}
 	return (0);

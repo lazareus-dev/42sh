@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include "../../includes/msh_parser.h"
 #include "../../includes/msh_exec.h"
 
 int		prerun_cmd(t_cmds *cmd, t_shell *shell)
@@ -34,6 +35,7 @@ int		exec_and_if(t_cmds **cmd, int *ret, t_shell *shell)
 		*ret = msh_pipe(cmd, shell);
 	else
 	{
+		msh_expand(*cmd, shell);
 		if ((*ret = prerun_cmd((*cmd), shell)))
 			return (*ret);
 		*ret = dispatch_cmd((*cmd)->cmd, shell, FORK_IT);
@@ -54,6 +56,7 @@ int		exec_or_if(t_cmds **cmd, int *ret, t_shell *shell)
 		*ret = msh_pipe(cmd, shell);
 	else
 	{
+		msh_expand(*cmd, shell);
 		if ((*ret = prerun_cmd((*cmd), shell)))
 			return (*ret);
 		*ret = dispatch_cmd((*cmd)->cmd, shell, FORK_IT);
@@ -69,6 +72,7 @@ int		exec_regular(t_cmds *cmd, t_shell *shell)
 
 	if ((ret = prerun_cmd(cmd, shell)))
 		return (ret);
+	msh_expand(cmd, shell);
 	ret = dispatch_cmd(cmd->cmd, shell, FORK_IT);
 	restore_fd_original_state(shell);
 	rebuild_fd(cmd->redirlst);

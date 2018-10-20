@@ -13,30 +13,21 @@
 
 #include "../../includes/minishell.h"
 #include "../../includes/msh_lexer.h"
+#include "../../includes/msh_parser.h"
 #include "../../includes/msh_var_utils.h"
 
 static int	dollar_is_quoted(char *dollar, char *token)
 {
 	int quoted;
 	int	escape;
+	int	ret;
 
 	quoted = 0;
 	escape = 0;
-	while (*token && (token != dollar))
-	{
-		if (*token == '\\' && !quoted)
-			escape = !escape;
-		if (*token == '\\' && !quoted && token + 1 == dollar)
-			break ;
-		if (*token != '\\' && !quoted)
-			escape = 0;
-		if (*token == '\'' && !quoted && !escape)
-			quoted = 1;
-		else if (*token == '\'' && quoted && !escape)
-			quoted = 0;
-		token++;
-	}
-	return (quoted | escape);
+	ret = check_if_quoted(dollar, token, escape, quoted);
+	if (ret == DQUOTE)
+		ret = 0;
+	return (ret);
 }
 
 static char	*expand_sp_param(char c)

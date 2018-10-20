@@ -1,0 +1,7 @@
+*.a
+*.o
+*.swp
+42sh
+.lsh_history
+*.dSYM
+.vscode
