@@ -6,7 +6,7 @@
 /*   By: vbranco <vbranco@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/04 22:18:25 by tle-coza     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/10 18:34:56 by vbranco     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/21 12:53:27 by vbranco     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,10 @@ int		msh_notdir(char **path, char *arg)
 int		msh_nofile(char **path, char *arg)
 {
 	write(2, "cd: no such file or directory: ", 31);
-	ft_putendl_fd(arg, 2);
+	if (!ft_strcmp(arg, "-"))
+		ft_putendl_fd(*path, 2);
+	else
+		ft_putendl_fd(arg, 2);
 	ft_strdel(path);
 	return (1);
 }
