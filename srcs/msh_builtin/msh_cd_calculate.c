@@ -6,7 +6,7 @@
 /*   By: vbranco <vbranco@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/11 17:52:04 by vbranco      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/12 15:08:45 by vbranco     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/21 11:26:46 by vbranco     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,9 +23,10 @@ static int	len_cpy(char *str)
 	int	ret;
 
 	i = 0;
+	ret = 0;
 	while (str[i])
 	{
-		if (str[i] == '/')
+		if (str[i] == '/' && str[i + 1] && str[i + 1] != '/')
 			ret = i;
 		i++;
 	}
@@ -61,18 +62,23 @@ static void	browse_matrice(char **matrice, char *tmp_path)
 	}
 }
 
-static char	*calculate_path(t_cd *cd, t_shell *shell)
+static char	*calculate_path(t_cd *cd, t_shell *shell, int relative_path)
 {
 	char	**matrice;
 	char	*tmp_path;
 
 	matrice = ft_strsplit(cd->target, '/');
 	tmp_path = ft_memalloc(2048);
-	cd->final_pwd = ft_strdup(msh_getenv("PWD", shell));
-	if (!cd->final_pwd)
-		cd->final_pwd = get_pwd();
-	ft_memcpy(tmp_path, cd->final_pwd, ft_strlen(cd->final_pwd));
-	ft_strdel(&(cd->final_pwd));
+	if (relative_path)
+	{
+		cd->final_pwd = ft_strdup(msh_getenv("PWD", shell));
+		if (!cd->final_pwd)
+			cd->final_pwd = get_pwd();
+		ft_memcpy(tmp_path, cd->final_pwd, ft_strlen(cd->final_pwd));
+		ft_strdel(&(cd->final_pwd));
+	}
+	else
+		ft_memcpy(tmp_path, "/", 1);
 	browse_matrice(matrice, tmp_path);
 	ft_matricedel(&matrice);
 	return (tmp_path);
@@ -81,14 +87,9 @@ static char	*calculate_path(t_cd *cd, t_shell *shell)
 static char	*like_link(t_cd *cd, t_shell *shell)
 {
 	if (cd->target[0] == '/')
-	{
-		if (cd->target[1] == '.')
-			return (ft_strdup("/"));
-		else
-			return (ft_strdup(cd->target));
-	}
+		return (calculate_path(cd, shell, 0));
 	else
-		return (calculate_path(cd, shell));
+		return (calculate_path(cd, shell, 1));
 }
 
 char		*resolve_path(t_cd *cd, t_shell *shell)

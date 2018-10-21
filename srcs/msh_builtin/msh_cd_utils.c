@@ -6,7 +6,7 @@
 /*   By: vbranco <vbranco@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/11 18:27:21 by vbranco      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/12 15:09:17 by vbranco     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/21 11:36:57 by vbranco     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ static int	get_opt(char **args, int *i, int *opt)
 		if (args[*i][*opt] == '-' && args[*i][*opt + 1])
 			return (-1);
 		if (args[*i][*opt] == '-')
-			return (++option);
+			return (++(*i));
 		while (args[*i] && args[*i][*opt])
 		{
 			if (args[*i][*opt] != 'P' && args[*i][*opt] != 'L')
