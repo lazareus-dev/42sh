@@ -6,7 +6,7 @@
 #    By: vischlum <vischlum@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2017/11/09 11:09:59 by tle-coza     #+#   ##    ##    #+#        #
-#    Updated: 2018/10/20 11:27:29 by vischlum    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/22 11:22:30 by vischlum    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -77,15 +77,18 @@ INC = -I libft.h -I ./ft_printf/ft_printf.h
 all: $(NAME)
 
 $(NAME): $(OBJS) $(PFOBJS)
-	ar crs $@ $^
+	@echo "\033[0;96m$(NAME): Compiling ⏳️\033[0m"
+	@ar crs $@ $^
+	@echo "\033[0;35m$(NAME): Ready to go ️🏎️ \033[0m"
 
 %.o: %.c
 	@$(CC) -O2 $(INC) $(FLAGS) -c $^ -o $@
 
 clean:
-	/bin/rm -rf $(OBJS) $(PFOBJS)
+	@/bin/rm -rf $(OBJS) $(PFOBJS)
 
 fclean: clean
-	/bin/rm -rf $(NAME)
+	@/bin/rm -rf $(NAME)
+	@echo "\033[0;32m$(NAME): Spotless ✨\033[0m"
 
 re : fclean all

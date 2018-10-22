@@ -6,7 +6,7 @@
 #    By: vischlum <vischlum@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/23 19:11:16 by tle-coza     #+#   ##    ##    #+#        #
-#    Updated: 2018/10/20 11:21:39 by vischlum    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/22 11:25:34 by vischlum    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -84,29 +84,28 @@ L_FT        =   ./libft
 
 LIB_LNK     =   -L $(L_FT) -l ft
 
-#TERMCAP_LNK =	-ltermcap
-
 LIB_INC     =   -I $(L_FT)/libft.h
-
-#CC			=	gcc
 
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
+		@echo "\033[0;96m$(NAME): Compiling ⏳️\033[0m"
 	    @$(MAKE) -C $(L_FT)
-		$(CC) -I ./includes $(OBJECTS) $(TERMCAP_LNK) $(LIB_LNK) -o $@
+		@$(CC) -I ./includes $(OBJECTS) $(TERMCAP_LNK) $(LIB_LNK) -o $@
+		@echo "\033[1;34m~ Welcome to LazySH ~\033[0m"
 
 %.o: ./%.c
-	    $(CC) $(FLAGS) $(LIB_INC) -I ./includes -c $< -o $@
+	    @$(CC) $(FLAGS) $(LIB_INC) -I ./includes -c $< -o $@
 
 clean:
 #		@$(MAKE) -C $(L_FT) clean
-		rm -rf $(OBJECTS)
+		@rm -rf $(OBJECTS)
+		@echo "\033[0;32m$(NAME): Spotless ✨\033[0m"
 
 fclean: clean
-		rm -rf $(NAME)
+		@rm -rf $(NAME)
 #		@$(MAKE) -C $(L_FT) fclean
 
 clear:
