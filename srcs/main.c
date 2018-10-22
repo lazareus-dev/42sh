@@ -100,9 +100,11 @@ static void			msh_loop(t_shell *shell)
 				&& !shell->sigint)
 			{
 				set_canonical_term(shell);
+				sig_child_handlers();
 				exec_all(shell->cmds, shell);
 			}
 		}
+		sig_handlers();
 		free_tokenlst(&shell->tokenlst, 0);
 		free_cmds(&shell->cmds);
 	}

@@ -49,6 +49,19 @@ void		sigint_handler(int sig)
 		ctrl_c(shell);
 }
 
+void		sig_child_handlers(void)
+{
+	signal(SIGCHLD, SIG_DFL);
+	signal(SIGTTIN, SIG_DFL);
+	signal(SIGTERM, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGTSTP, SIG_DFL);
+	signal(SIGWINCH,SIG_DFL);
+	signal(SIGUSR1, SIG_DFL);
+	signal(SIGHUP, 	SIG_DFL);
+	signal(SIGIO, 	SIG_DFL);
+}
+
 void		sig_handlers(void)
 {
 	signal(SIGINT, sigint_handler);

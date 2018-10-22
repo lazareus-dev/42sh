@@ -15,7 +15,7 @@
 # define MSH_SIGNAL_H
 
 void	sig_handlers(void);
+void	sig_child_handlers(void);
 void	sigint_handler(int sig);
-void	sigtstp_child(int sig);
 
 #endif
