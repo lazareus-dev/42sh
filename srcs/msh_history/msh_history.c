@@ -93,6 +93,7 @@ int		msh_history(char **av, t_shell *shell)
 	if (!shell->history)
 		return (1);
 	shell->history->opt = 0;
+	shell->history->opt_args = NULL;
 	if (!av || !av[0])
 		ret = print_history(shell->history, 0);
 	else if (av && av[0])
@@ -100,5 +101,6 @@ int		msh_history(char **av, t_shell *shell)
 	else
 		ret = 0;
 	free(shell->history->opt_args);
+	shell->history->opt_args = NULL;
 	return (ret);
 }

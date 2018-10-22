@@ -25,7 +25,7 @@ int			append_hist_to_file(t_shell *shell)
 	char	*file;
 	int		hist_fd;
 
-	if (!shell->history->opt_args || (file = shell->history->opt_args[0]))
+	if (!shell->history->opt_args || !(file = shell->history->opt_args[0]))
 		file = msh_getenv("HISTFILE", shell);
 	if ((hist_fd = ft_get_fd_write(file, FILE_APPEND)) < 0)
 		return (1);
@@ -49,7 +49,7 @@ int			append_latest_to_file(t_shell *shell)
 	int		hist_fd;
 	int		i;
 
-	if (!shell->history->opt_args || (file = shell->history->opt_args[0]))
+	if (!shell->history->opt_args || !(file = shell->history->opt_args[0]))
 		file = msh_getenv("HISTFILE", shell);
 	if ((hist_fd = ft_get_fd_write(file, FILE_APPEND)) < 0)
 		return (1);
@@ -81,7 +81,7 @@ int			append_latest_to_history(t_shell *shell)
 	int		hist_fd;
 	int		i;
 
-	if (!shell->history->opt_args || (file = shell->history->opt_args[0]))
+	if (!shell->history->opt_args || !(file = shell->history->opt_args[0]))
 		file = msh_getenv("HISTFILE", shell);
 	if ((hist_fd = ft_get_fd_read(file)) < 0)
 		return (1);
@@ -111,7 +111,7 @@ int			append_file_to_hist(t_shell *shell)
 	char	*line;
 	int		hist_fd;
 
-	if (!shell->history->opt_args || (file = shell->history->opt_args[0]))
+	if (!shell->history->opt_args || !(file = shell->history->opt_args[0]))
 		file = msh_getenv("HISTFILE", shell);
 	if ((hist_fd = ft_get_fd_read(file)) < 0)
 		return (1);
