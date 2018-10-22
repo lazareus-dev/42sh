@@ -23,7 +23,10 @@ void	clear_screen(t_shell *shell)
 	shell->input.cursor.y = 0;
 	shell->input.end_buf.y = calculate_end_buf_y(shell);
 	util_move(0, 0);
-	prompt(shell);
+	if (shell->input.prompt != PROMPT)
+		reprompt(shell, shell->input.prompt);
+	else
+		prompt(shell);
 	get_cursor_position(shell, INIT_COORD);
 	put_line(shell->input.buffer);
 	get_cursor_position(shell, CURRENT_LINE_END_LIMIT);

@@ -35,7 +35,9 @@ static int	update_screen(t_shell *shell)
 	read(shell->terminal.fd, buff, BUFFSIZE - 1);
 	if (buff[0] != 9)
 	{
+		util_move(shell->input.end_buf.x, shell->input.end_buf.y);
 		tputs(tgoto(tgetstr("cd", NULL), 0, 0), 1, ft_putchar_term);
+		util_move(shell->input.cursor.x, shell->input.cursor.y);
 		ioctl(shell->terminal.fd, TIOCSTI, buff);
 		return (1);
 	}
