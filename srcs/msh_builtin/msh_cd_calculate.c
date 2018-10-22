@@ -16,6 +16,7 @@
 #include "../../includes/msh_error.h"
 #include "../../includes/msh_var_utils.h"
 #include "../../includes/msh_setunsetenv.h"
+#include <limits.h>
 
 static int	len_cpy(char *str)
 {
@@ -45,8 +46,7 @@ static void	browse_matrice(char **matrice, char *tmp_path)
 		if (!ft_strcmp(matrice[i], ".."))
 		{
 			ft_memmove(tmp_path + len_cpy(tmp_path),
-				tmp_path + ft_strlen(tmp_path),
-				len_cpy(tmp_path));
+				tmp_path + ft_strlen(tmp_path), ft_strlen(tmp_path));
 		}
 		else
 		{
@@ -68,17 +68,22 @@ static char	*calculate_path(t_cd *cd, t_shell *shell, int relative_path)
 	char	*tmp_path;
 
 	matrice = ft_strsplit(cd->target, '/');
-	tmp_path = ft_memalloc(2048);
 	if (relative_path)
 	{
 		cd->final_pwd = ft_strdup(msh_getenv("PWD", shell));
 		if (!cd->final_pwd)
 			cd->final_pwd = get_pwd();
+		tmp_path = ft_memalloc(ft_strlen(cd->final_pwd) + ft_strlen(cd->target)
+			+ _POSIX_PATH_MAX);
 		ft_memcpy(tmp_path, cd->final_pwd, ft_strlen(cd->final_pwd));
 		ft_strdel(&(cd->final_pwd));
 	}
 	else
+	{
+		tmp_path = ft_memalloc(ft_strlen(cd->final_pwd) + ft_strlen(cd->target)
+			+ _POSIX_PATH_MAX);
 		ft_memcpy(tmp_path, "/", 1);
+	}
 	browse_matrice(matrice, tmp_path);
 	ft_matricedel(&matrice);
 	return (tmp_path);

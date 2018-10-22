@@ -30,7 +30,7 @@ char		*get_usr(void)
 	return (usr);
 }
 
-int			get_path(char *path)
+int			get_path(char *path, t_shell *shell)
 {
 	char	*pwd;
 	char	*ptr;
@@ -38,8 +38,11 @@ int			get_path(char *path)
 
 	i = 0;
 	ft_bzero(path, 1024);
-	if (!(pwd = get_pwd()))
-		return (1);
+	if (!(pwd = ft_strdup(msh_getenv("PWD", shell))))
+	{
+		if (!(pwd = get_pwd()))
+			return (1);
+	}
 	ptr = ft_get_last_path_elem(pwd);
 	if (*ptr == '\0')
 		path[i] = '/';
@@ -62,7 +65,7 @@ void		prompt(t_shell *shell)
 
 	shell->input.len_prompt = 0;
 	usr = get_usr();
-	get_path(path);
+	get_path(path, shell);
 	write(shell->terminal.fd, BOLD, 4);
 	shell->input.len_prompt = ft_strlen(usr);
 	ft_putstr(usr);

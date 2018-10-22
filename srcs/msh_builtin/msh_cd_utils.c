@@ -16,6 +16,17 @@
 #include "../../includes/msh_error.h"
 #include "../../includes/msh_var_utils.h"
 #include "../../includes/msh_setunsetenv.h"
+#include <limits.h>
+
+static void	msh_cd_init_error(char *arg, char *error)
+{
+	ft_putstr_fd("lsh: cd: ", 2);
+	if (!ft_strcmp(error, "invalid option"))
+		ft_putstr_fd("-", 2);
+	ft_putstr_fd(arg, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd(error, 2);
+}
 
 static int	get_opt(char **args, int *i, int *opt)
 {
@@ -52,10 +63,13 @@ int			init_cd(t_cd *cd, char **args, int *i)
 	cd->lnk_follow = get_opt(args, i, &opt);
 	if (cd->lnk_follow == -1)
 	{
-		ft_putstr_fd("sh: cd: -", 2);
-		ft_putchar_fd(args[*i][opt], 2);
-		ft_putendl_fd(": invalid option", 2);
+		msh_cd_init_error(&args[*i][opt], "invalid option");
 		msh_cdenverror(USAGE);
+		return (1);
+	}
+	if (ft_strlen(args[*i]) > _POSIX_PATH_MAX)
+	{
+		msh_cd_init_error(args[*i], "File name too long");
 		return (1);
 	}
 	cd->target = args[*i];
