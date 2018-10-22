@@ -24,7 +24,7 @@ int			check_if_quoted(char *dollar, char *token, int *escape, int *quoted)
 	i = 0;
 	while ((c = token[i]) && (token + i) != dollar)
 	{
-		if (c == '\\' && *quoted != SQUOTE/* && quoted != DQUOTE*/)
+		if (c == '\\' && *quoted != SQUOTE)
 			*escape = !*escape;
 		else if ((c == '\"' || c == '\'') && !*escape)
 		{
