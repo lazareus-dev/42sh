@@ -82,6 +82,7 @@ int			env_launcher_add(char **args, t_shell *shell)
 		ret = print_var(&tmp_shell.env);
 	free_envlst(&(tmp_shell.env));
 	free_envlst(&(tmp_shell.local_var));
+	ft_free_hashtable(&tmp_shell.bin_table);
 	return (ret);
 }
 

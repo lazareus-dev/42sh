@@ -6,7 +6,7 @@
 #    By: vischlum <vischlum@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/23 19:11:16 by tle-coza     #+#   ##    ##    #+#        #
-#    Updated: 2018/10/22 11:25:34 by vischlum    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/22 13:04:01 by tle-coza    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -100,13 +100,13 @@ $(NAME): $(OBJECTS)
 	    @$(CC) $(FLAGS) $(LIB_INC) -I ./includes -c $< -o $@
 
 clean:
-#		@$(MAKE) -C $(L_FT) clean
+		@$(MAKE) -C $(L_FT) clean
 		@rm -rf $(OBJECTS)
 		@echo "\033[0;32m$(NAME): Spotless ✨\033[0m"
 
 fclean: clean
 		@rm -rf $(NAME)
-#		@$(MAKE) -C $(L_FT) fclean
+		@$(MAKE) -C $(L_FT) fclean
 
 clear:
 		@$(MAKE) all
