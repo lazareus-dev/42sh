@@ -68,7 +68,7 @@ int	process_history_options(t_shell *shell)
 	if (shell->history->opt & HOPT_P)
 		ret = print_arg_delete_last(shell->history);
 	if (shell->history->opt & HOPT_R)
-		ret = append_file_to_hist(shell->history->opt_args[0], shell);
+		ret = append_file_to_hist(shell);
 	if (shell->history->opt & HOPT_W)
 		ret = append_hist_to_file(shell);
 	if (shell->history->opt & HOPT_A)

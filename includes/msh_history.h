@@ -116,7 +116,7 @@ int					get_hopt(char **av, t_shell *shell);
 int					append_hist_to_file(t_shell *shell);
 int					append_latest_to_file(t_shell *shell);
 int					append_latest_to_history(t_shell *shell);
-int					append_file_to_hist(char *file, t_shell *shell);
+int					append_file_to_hist(t_shell *shell);
 int					del_one_hist(t_shell *shell);
 int					append_arg_to_hist(t_history *history);
 int					print_arg_delete_last(t_history *history);
