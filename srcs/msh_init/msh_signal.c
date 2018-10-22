@@ -52,11 +52,13 @@ void		sigint_handler(int sig)
 void		sig_handlers(void)
 {
 	signal(SIGINT, sigint_handler);
-	signal(SIGTERM, sigint_handler);
-	signal(SIGQUIT, sigint_handler);
+	signal(SIGCHLD, SIG_IGN);
+	signal(SIGTTIN, SIG_IGN);
+	signal(SIGTERM, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGWINCH, handle_winch);
-	signal(SIGUSR1, sigint_handler);
-	signal(SIGHUP, sigint_handler);
-	signal(SIGIO, sigint_handler);
+	signal(SIGUSR1, SIG_IGN);
+	signal(SIGHUP, SIG_IGN);
+	signal(SIGIO, SIG_IGN);
 }
