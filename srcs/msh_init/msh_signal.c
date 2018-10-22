@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   msh_signal.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: tle-coza <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: vischlum <vischlum@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/16 14:51:28 by tle-coza     #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/12 17:02:30 by vbranco     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 18:52:06 by vischlum    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,6 +47,19 @@ void		sigint_handler(int sig)
 	shell = get_shell();
 	if (sig == SIGINT)
 		ctrl_c(shell);
+}
+
+void		sig_child_handlers(void)
+{
+	signal(SIGCHLD, SIG_DFL);
+	signal(SIGTTIN, SIG_DFL);
+	signal(SIGTERM, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGTSTP, SIG_DFL);
+	signal(SIGWINCH, SIG_DFL);
+	signal(SIGUSR1, SIG_DFL);
+	signal(SIGHUP, SIG_DFL);
+	signal(SIGIO, SIG_DFL);
 }
 
 void		sig_handlers(void)
