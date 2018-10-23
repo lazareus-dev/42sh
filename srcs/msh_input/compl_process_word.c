@@ -85,7 +85,7 @@ int			process_word(t_compl *compl)
 	if (ft_strlen(compl->closest_match) == compl->max_match_len)
 		process_closest_match(&compl->closest_match, *compl, 1);
 	else
-	 	process_closest_match(&compl->closest_match, *compl, 0);
+		process_closest_match(&compl->closest_match, *compl, 0);
 	dprintf(2, "cl match aft = [%s]\n", compl->closest_match);
 	return (ret);
 }

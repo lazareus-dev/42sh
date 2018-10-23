@@ -59,15 +59,6 @@ void	debug_compl(t_compl compl)
 	dprintf(2, "middleofw = [%d]\n", compl.middleofword);
 }
 
-t_tokenlst	*tokenize_buffer(char *buff)
-{
-	t_tokenlst *toklst;
-
-	toklst = init_tokenlst();
-	tokenize(toklst, buff);
-	return (toklst);
-}
-
 void	parse_token(t_tokenlst *toklst, t_input *input, char *buff)
 {
 	char	*ptr;
@@ -108,7 +99,8 @@ int		get_word(t_input *input, t_shell *shell)
 	buff = ft_strsub(input->buffer, 0, input->i);
 	if (input->buffer[input->i])
 		input->compl.middleofword = 1;
-	toklst = tokenize_buffer(buff);
+	toklst = init_tokenlst();
+	tokenize(toklst, buff);
 	parse_token(toklst, input, buff);
 	input->compl.word_len = ft_strlen(input->compl.word);
 	parse_word(input, shell);
