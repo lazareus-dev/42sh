@@ -56,9 +56,12 @@ int			process_word(t_compl *compl)
 	}
 	if (!compl->closest_match)
 		return (1);
-	if (ft_strlen(compl->closest_match) == compl->max_match_len)
-		process_closest_match(&compl->closest_match, *compl);
 	if (ft_strlen(compl->closest_match) > ft_strlen(compl->word))
 		ret = 0;
+	if (ft_strlen(compl->closest_match) == compl->max_match_len)
+		process_closest_match(&compl->closest_match, *compl, 1);
+	else
+	 	process_closest_match(&compl->closest_match, *compl, 0);
+	dprintf(2, "cl match = [%s]\n", compl->closest_match);
 	return (ret);
 }

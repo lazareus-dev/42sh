@@ -139,7 +139,7 @@ void	clear_screen(t_shell *shell);
 */
 t_list	*get_matches(t_compl *compl);
 int		get_word(t_input *input, t_shell *shell);
-void	process_closest_match(char **original, t_compl compl);
+void	process_closest_match(char **original, t_compl compl, int full);
 void	test_match(char *cmp, t_list **matches, t_compl *compl);
 void	match_var(t_list **matches, t_headlst varlst, t_compl *compl);
 void	match_cmd(t_list **matches, t_shell *shell, t_compl *compl);

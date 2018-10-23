@@ -38,7 +38,7 @@ void	expand_tilde_assignment(char **str)
 			&& (*(tilde - 1) == ':' || *(tilde - 1) == '='))
 		{
 			home = ft_strdup(get_home());
-			hook = ft_expand_str_part(str, tilde, 1, home);
+			hook = ft_expand_str_part(str, tilde, 0, home);
 			tilde = *str + hook;
 			ft_strdel(&home);
 		}

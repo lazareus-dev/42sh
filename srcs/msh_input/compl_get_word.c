@@ -15,43 +15,6 @@
 #include "../../includes/msh_lexer.h"
 #include "../../includes/msh_parser.h"
 
-void	reset_buffer(char **buff, char **ptr, char **tmp, int *ret)
-{
-	*ret = 0;
-	while (**buff == ' ')
-		(*buff)++;
-	*ptr = *buff;
-	*tmp = *buff;
-}
-
-int		parse_buffer(char *buff, char **ptr)
-{
-	char	*tmp;
-	int		quote;
-	int		ret;
-
-	quote = 0;
-	reset_buffer(&buff, &tmp, ptr, &ret);
-	while (*buff)
-	{
-		if ((*buff == '"' || *buff == '\'') && !ft_is_quoted(tmp, buff))
-			quote = !quote;
-		else if (is_operator_ctrl_char(*buff) && !quote)
-		{
-			buff++;
-			reset_buffer(&buff, &tmp, ptr, &ret);
-			continue ;
-		}
-		else if (*buff == ' ' && !quote)
-		{
-			ret = 1;
-			*ptr = buff + 1;
-		}
-		buff++;
-	}
-	return (ret);
-}
-
 int		quote_parsing(t_input *input)
 {
 	if (is_quoting_char(input->compl.word[0]))
@@ -89,25 +52,67 @@ int		parse_word(t_input *input, t_shell *shell)
 	return (0);
 }
 
+void	debug_compl(t_compl compl)
+{
+	dprintf(2, "word = [%s]\n", compl.word);
+	dprintf(2, "wordlen = [%zu]\n", compl.word_len);
+	dprintf(2, "middleofw = [%d]\n", compl.middleofword);
+}
+
+t_tokenlst	*tokenize_buffer(char *buff)
+{
+	t_tokenlst *toklst;
+
+	toklst = init_tokenlst();
+	tokenize(toklst, buff);
+	return (toklst);
+}
+
+void	parse_token(t_tokenlst *toklst, t_input *input, char *buff)
+{
+	char	*ptr;
+	size_t	buflen;
+	int		space;
+
+	space = 0;
+	buflen = ft_strlen(buff) - 1;
+	ptr = buff + buflen;
+	if (buff[buflen] == ' ' && !ft_ptr_is_quoted(buff, ptr))
+	{
+		space = 1;
+		input->compl.word = ft_memalloc(1);
+	}
+	else
+		input->compl.word = ft_strdup(toklst->last->token);
+	if (!toklst->first)
+		input->compl.is_cmd = 1;
+	else if (toklst->first == toklst->last && space == 0)
+		input->compl.is_cmd = 1;
+	if (toklst->last && toklst->last->prev)
+	{
+		if ((toklst->last->prev->optype == SEPARATOR && !space)
+		|| toklst->last->optype == SEPARATOR)
+			input->compl.is_cmd = 1;
+	}
+}
+
 /*
 **	Get the letters ("word") to be completed
 */
 
 int		get_word(t_input *input, t_shell *shell)
 {
-	char	*buff;
-	char	*ptr;
+	char		*buff;
+	t_tokenlst	*toklst;
 
-	ptr = NULL;
 	buff = ft_strsub(input->buffer, 0, input->i);
 	if (input->buffer[input->i])
 		input->compl.middleofword = 1;
-	if (!parse_buffer(buff, &ptr))
-		input->compl.is_cmd = 1;
-	input->compl.word = ft_strdup(ptr);
-	if (ptr)
-		input->compl.word_len = ft_strlen(ptr);
+	toklst = tokenize_buffer(buff);
+	parse_token(toklst, input, buff);
+	input->compl.word_len = ft_strlen(input->compl.word);
 	parse_word(input, shell);
+	free_tokenlst(&toklst, 0);
 	ft_strdel(&buff);
 	return (0);
 }

@@ -90,35 +90,44 @@ static void	put_suffix(char **output, int suffix, t_compl compl)
 	}
 }
 
+void		process_soft(char **output, char **original, t_compl compl)
+{
+	size_t	len_output;
+
+	len_output = ft_strlen(*original) + 2 + (compl.quoted != 0);
+	if (!compl.quoted && !ft_strcspn(ESCAPE_CHARS, *original))
+	{
+		len_output += count_sp_chars_in_str(*original);
+		*output = ft_strnew(len_output);
+		copy_and_escape(*output, *original, (compl.quoted != 0));
+	}
+	else
+	{
+		*output = ft_strnew(len_output);
+		if (compl.quoted)
+			ft_strcpy((*output) + 1, *original);
+		else
+			ft_strcpy(*output, *original);
+	}
+}
+
 /*
 **	Add quoting, escaping, last space if file or last slash if dir
 */
 
-void		process_closest_match(char **original, t_compl compl)
+void		process_closest_match(char **original, t_compl compl, int full)
 {
 	char	*output;
-	size_t	len_output;
 	int		suffix;
 
-	len_output = ft_strlen(*original) + 2 + (compl.quoted != 0);
-	if (!ft_strcspn(ESCAPE_CHARS, *original))
+	process_soft(&output, original, compl);	
+	if (full)
 	{
-		len_output += count_sp_chars_in_str(*original);
-		output = ft_strnew(len_output);
-		copy_and_escape(output, *original, (compl.quoted != 0));
+		compl.quoted == 2 ? output[0] = '\"' : 0;
+		compl.quoted == 1 ? output[0] = '\'' : 0;
+		suffix = get_suffix(*original, compl);
+		put_suffix(&output, suffix, compl);
 	}
-	else
-	{
-		output = ft_strnew(len_output);
-		if (compl.quoted)
-			ft_strcpy(output + 1, *original);
-		else
-			ft_strcpy(output, *original);
-	}
-	compl.quoted == 2 ? output[0] = '\"' : 0;
-	compl.quoted == 1 ? output[0] = '\'' : 0;
-	suffix = get_suffix(*original, compl);
-	put_suffix(&output, suffix, compl);
 	ft_strdel(original);
 	*original = output;
 }

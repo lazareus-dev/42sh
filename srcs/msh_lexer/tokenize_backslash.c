@@ -34,5 +34,10 @@ char	*tokenize_backslash(char *str, int *index)
 	}
 	if (str[*index + 1])
 		ret = get_quoted_char(str, index);
+	else
+	{
+		ret = ft_strdup("\\");
+		(*index) += 1;
+	}
 	return (ret);
 }
