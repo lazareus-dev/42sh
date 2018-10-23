@@ -64,7 +64,6 @@ void		sig_child_handlers(void)
 void		sig_handlers(void)
 {
 	signal(SIGINT, sigint_handler);
-	signal(SIGCHLD, SIG_IGN);
 	signal(SIGTTIN, SIG_IGN);
 	signal(SIGTERM, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);

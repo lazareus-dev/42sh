@@ -57,6 +57,7 @@ static int	pipeline(t_cmds *cmds, t_shell *shell)
 	pid_t	pid;
 	int		status;
 
+	status = 0;
 	p.first = STDIN_FILENO;
 	while (cmds && cmds->type == S_CMD)
 	{
