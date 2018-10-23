@@ -1,27 +1,28 @@
 # 42sh
-This is the final project of the Unix branch at [Le 101](https://www.le-101.fr/), the culmination of the first year of study.
+This is the final project of the Unix branch at [Le 101](https://www.le-101.fr/), the culmination of the first year of study: a working shell, full of cool features!
+
 This project was coded in C, following the Norm used by the school (see [References](#references) below). The program is not allowed to crash, nor leak any memory.
 
 It was designed for MacOS but should work fine on Linux: simply `make` and enjoy!
 
-Made with love and care by Thibault Le Cozanet, Vitor Branco & Vincent Schlumberger
+Made with love and care by [Thibault Le Cozanet](https://github.com/lazylazareus), [Vitor Branco](https://github.com/vbranco) & [Vincent Schlumberger](https://github.com/vischlum)
 
 ## Mandatory part
-* Minimum line acquisition (prompt display, reading of a command line, proper space and tabulations management)
+* Execution of commands with arguments and path management
+* Line acquisition (prompt display, reading of a command line, proper space and tabulations management)
 * Builtins with their POSIX options: `cd`, `echo`, `exit`, `env`, `setenv`, `unsetenv`
-* Simple execution of simple commands with arguments and path management
 * Error and commands' return value management
 * Redirections : ">", ">>", "<", "|"
 * Logical operators: "&&", "||"
 * Separator: ";"
 
 ## Bonuses
-* Inhibitors: double quote ("), simple quote ('), backslash (\\)
-* Advanced redirections: file output aggregation and heredoc (<<)
-* Local variables and `unset` and `export` builtin
-* Command history, `history` and `!` builtins (including all their features if they have any)
 * Dynamic autocompletion with <kbd>Tab</kbd>
 * Hash table for binaries, and `hash` command
+* Command history, `history` and `!` builtins (including all their features if they have any)
+* Local variables and `unset` and `export` builtin
+* Inhibitors: double quote ("), simple quote ('), backslash (\\)
+* Advanced redirections: file output aggregation and heredoc (<<)
 * Line edition
     * Cursor movement
         * <kbd>Right/Left</kbd> Move letter by letter
@@ -41,3 +42,5 @@ This a list of ressources we found useful in making this project.
 - [PDF of The Norm](https://cdn.intra.42.fr/pdf/pdf/1065/norme.en.pdf)
 - [Shell Grammar](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
 - [Terminal Capabilities](https://www.gnu.org/software/termutils/manual/termcap-1.3/html_chapter/termcap_4.html)
+- [The Linux Programming Interface (first edition), Michael Kerrisk, No Starch Press (2010), ISBN 978-1-59327-220-3](https://nostarch.com/tlpi)
+- [Advanced Programming in the UNIX environment (third edition), W. Richard Stevens and Stephen A. Rago, Addison-Wesley (2013), ISBN 978-0-321-63773-4](http://www.apuebook.com/apue3e.html)
