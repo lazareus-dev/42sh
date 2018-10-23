@@ -104,14 +104,11 @@ char		*process_soft(char **original, t_compl compl)
 	}
 	else
 	{
-		dprintf(2, "soft original [%s]\n", *original);
 		output = ft_strnew(len_output);
-		dprintf(2, "len_output [%zu]\n", len_output);
 		if (compl.quoted)
 			ft_strcpy(output + 1, *original);
 		else
 			ft_strcpy(output, *original);
-		dprintf(2, "soft output [%s]\n", output);
 	}
 	return (output);
 }

@@ -47,7 +47,6 @@ void		process_closest_match(char **original, t_compl compl, int full)
 	int		suffix;
 
 	output = process_soft(original, compl);
-	dprintf(2, "post output [%s]\n", output);
 	compl.quoted == 2 ? output[0] = '\"' : 0;
 	compl.quoted == 1 ? output[0] = '\'' : 0;
 	if (full)
@@ -79,13 +78,11 @@ int			process_word(t_compl *compl)
 	}
 	if (!compl->closest_match)
 		return (1);
-	dprintf(2, "cl match = [%s]\n", compl->closest_match);
 	if (ft_strlen(compl->closest_match) > ft_strlen(compl->word))
 		ret = 0;
 	if (ft_strlen(compl->closest_match) == compl->max_match_len)
 		process_closest_match(&compl->closest_match, *compl, 1);
 	else
 		process_closest_match(&compl->closest_match, *compl, 0);
-	dprintf(2, "cl match aft = [%s]\n", compl->closest_match);
 	return (ret);
 }
