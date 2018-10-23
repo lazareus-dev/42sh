@@ -6,7 +6,7 @@
 /*   By: vbranco <vbranco@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/11 18:27:21 by vbranco      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/21 11:36:57 by vbranco     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/21 12:49:27 by vbranco     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,10 +20,14 @@
 
 static void	msh_cd_init_error(char *arg, char *error)
 {
-	ft_putstr_fd("lsh: cd: ", 2);
+	ft_putstr_fd("cd: ", 2);
 	if (!ft_strcmp(error, "invalid option"))
+	{
 		ft_putstr_fd("-", 2);
-	ft_putstr_fd(arg, 2);
+		ft_putchar_fd(*arg, 2);
+	}
+	else
+		ft_putstr_fd(arg, 2);
 	ft_putstr_fd(": ", 2);
 	ft_putendl_fd(error, 2);
 }
