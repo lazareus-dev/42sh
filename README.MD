@@ -12,15 +12,15 @@ Made with love and care by [Thibault Le Cozanet](https://github.com/lazylazareus
 * Line acquisition (prompt display, reading of a command line, proper space and tabulations management)
 * Builtins with their POSIX options: `cd`, `echo`, `exit`, `env`, `setenv`, `unsetenv`
 * Error and commands' return value management
-* Redirections : ">", ">>", "<", "|"
+* Redirections: ">", ">>", "<", "|"
 * Logical operators: "&&", "||"
 * Separator: ";"
 
 ## Bonuses
 * Dynamic autocompletion with <kbd>Tab</kbd>
-* Hash table for binaries, and `hash` command
-* Command history, `history` and `!` builtins (including all their features if they have any)
-* Local variables and `unset` and `export` builtin
+* Hash table for binaries and `hash` command
+* Command history, `history` and `!` builtins
+* Local variables, `unset` and `export` builtins
 * Inhibitors: double quote ("), simple quote ('), backslash (\\)
 * Advanced redirections: file output aggregation and heredoc (<<)
 * Line edition
@@ -40,7 +40,7 @@ Made with love and care by [Thibault Le Cozanet](https://github.com/lazylazareus
 This a list of ressources we found useful in making this project.
 - [PDF of the subject](https://cdn.intra.42.fr/pdf/pdf/845/42sh.en.pdf)
 - [PDF of The Norm](https://cdn.intra.42.fr/pdf/pdf/1065/norme.en.pdf)
-- [Shell Grammar](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
-- [Terminal Capabilities](https://www.gnu.org/software/termutils/manual/termcap-1.3/html_chapter/termcap_4.html)
-- [The Linux Programming Interface (first edition), Michael Kerrisk, No Starch Press (2010), ISBN 978-1-59327-220-3](https://nostarch.com/tlpi)
-- [Advanced Programming in the UNIX environment (third edition), W. Richard Stevens and Stephen A. Rago, Addison-Wesley (2013), ISBN 978-0-321-63773-4](http://www.apuebook.com/apue3e.html)
+- [POSIX Base Specifications](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/contents.html) (IEEE 1003.1-2017), especially the [Shell Grammar](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
+- [GNU Termcap Manual](https://www.gnu.org/software/termutils/manual/termcap-1.3/html_chapter/termcap_toc.html), especially the [Definitions of Terminal Capabilities](https://www.gnu.org/software/termutils/manual/termcap-1.3/html_chapter/termcap_4.html)
+- [*The Linux Programming Interface* (first edition), Michael Kerrisk, No Starch Press (2010), ISBN 978-1-59327-220-3](https://nostarch.com/tlpi)
+- [*Advanced Programming in the UNIX environment* (third edition), W. Richard Stevens and Stephen A. Rago, Addison-Wesley (2013), ISBN 978-0-321-63773-4](http://www.apuebook.com/apue3e.html)
