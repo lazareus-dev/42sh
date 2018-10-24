@@ -29,7 +29,7 @@ int		msh_nofile(char **path, char *arg);
 int		msh_noaccess(char **path, char *arg);
 int		msh_setenverror(t_shell *shell);
 int		cmd_error(char *cmd);
-int		fork_error(int pid);
+int		fork_error(void);
 int		msh_notexec(char *path);
 int		msh_exitstatuserror(char *exit);
 int		msh_exitargserror(void);

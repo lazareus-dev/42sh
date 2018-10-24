@@ -13,6 +13,8 @@
 
 #include "../includes/minishell.h"
 
+#include <errno.h>
+
 int		cmd_error(char *cmd)
 {
 	write(2, "lsh: command not found: ", 24);
@@ -20,11 +22,14 @@ int		cmd_error(char *cmd)
 	return (127);
 }
 
-int		fork_error(int pid)
+int		fork_error(void)
 {
-	write(2, "lsh: could not fork: pid= ", 26);
-	ft_putnbr_fd(pid, 2);
+	write(2, "lsh: fork: ", 11);
+	if (errno == EAGAIN)
+		ft_putstr_fd("Resource temporarily unavailable", 2);
 	ft_putchar('\n');
+	while (wait(NULL) > 0)
+		;
 	return (1);
 }
 

@@ -56,7 +56,7 @@ int			fork_and_exec(char *cmd, char **args, char **tab_env)
 
 	status = 0;
 	if ((pid = fork()) < 0)
-		fork_error(pid);
+		fork_error();
 	else if (pid == 0)
 		exec(cmd, args, tab_env);
 	else
