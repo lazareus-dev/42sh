@@ -13,6 +13,7 @@
 
 #include "../../includes/minishell.h"
 #include "../../includes/msh_input.h"
+#include "../../includes/msh_completion.h"
 
 static char	*get_closest_match(char *word, size_t max_len, t_list *matches)
 {
@@ -37,6 +38,27 @@ static char	*get_closest_match(char *word, size_t max_len, t_list *matches)
 }
 
 /*
+**	Add quoting, escaping, last space if file or last slash if dir
+*/
+
+void		process_closest_match(char **original, t_compl compl, int full)
+{
+	char	*output;
+	int		suffix;
+
+	output = process_soft(original, compl);
+	compl.quoted == 2 ? output[0] = '\"' : 0;
+	compl.quoted == 1 ? output[0] = '\'' : 0;
+	if (full)
+	{
+		suffix = get_suffix(*original, compl);
+		put_suffix(&output, suffix, compl);
+	}
+	ft_strdel(original);
+	*original = output;
+}
+
+/*
 **	Get all possible matches and the closest match
 */
 
@@ -56,9 +78,11 @@ int			process_word(t_compl *compl)
 	}
 	if (!compl->closest_match)
 		return (1);
-	if (ft_strlen(compl->closest_match) == compl->max_match_len)
-		process_closest_match(&compl->closest_match, *compl);
 	if (ft_strlen(compl->closest_match) > ft_strlen(compl->word))
 		ret = 0;
+	if (ft_strlen(compl->closest_match) == compl->max_match_len)
+		process_closest_match(&compl->closest_match, *compl, 1);
+	else
+		process_closest_match(&compl->closest_match, *compl, 0);
 	return (ret);
 }

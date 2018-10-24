@@ -23,8 +23,6 @@
 # define BACKSPACE					0
 # define DELETE						1
 
-# define ALL_REG_FILES				0
-# define DIR_ONLY					1
 
 /*
 **	msh_input.c 4
@@ -133,17 +131,6 @@ int		process_word(t_compl *compl);
 **	clear_screen.c
 */
 void	clear_screen(t_shell *shell);
-
-/*
-**	completion functions
-*/
-t_list	*get_matches(t_compl *compl);
-int		get_word(t_input *input, t_shell *shell);
-void	process_closest_match(char **original, t_compl compl);
-void	test_match(char *cmp, t_list **matches, t_compl *compl);
-void	match_var(t_list **matches, t_headlst varlst, t_compl *compl);
-void	match_cmd(t_list **matches, t_shell *shell, t_compl *compl);
-void	match_builtin(t_list **matches, t_compl *compl);
 
 int		check_line_integrity(t_input *input);
 int		reprompt(t_shell *shell, int prompt_type);
