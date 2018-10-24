@@ -25,6 +25,8 @@ int		fd_error(char *filename, int ambiguous)
 		ft_putendl_fd("ambiguous redirect", 2);
 	else if (errno == EBADF)
 		ft_putendl_fd("Bad file descriptor", 2);
+	else if (errno == EMFILE)
+		ft_putendl_fd("Too many opened fds", 2);
 	return (1);
 }
 

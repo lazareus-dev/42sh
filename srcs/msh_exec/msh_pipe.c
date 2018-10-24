@@ -20,6 +20,7 @@
 #include "../../includes/msh_lstenv.h"
 
 #include <unistd.h>
+#include <sys/resource.h>
 
 static void	forward_pipes(t_cmds **cmds)
 {
@@ -66,7 +67,7 @@ static int	pipeline(t_cmds *cmds, t_shell *shell)
 		if (pipe(p.fds) < 0)
 			return (pipe_error());
 		if ((pid = fork()) < 0)
-			return (fork_error(pid));
+			return (fork_error());
 		if (pid == CHILD)
 			pipe_cmd(cmds, p, shell);
 		manage_pipe_fds(&p);
@@ -78,13 +79,38 @@ static int	pipeline(t_cmds *cmds, t_shell *shell)
 	return (parse_status(status));
 }
 
+int			check_nb_pipes(t_cmds *cmd)
+{
+	t_cmds			*node;
+	struct rlimit	lim;
+	int				i;
+
+	getrlimit(RLIMIT_NPROC, &lim);
+	i = 0;
+	node = cmd;
+	while (node)
+	{
+		i++;
+		node = node->next;
+	}
+	if ((unsigned long long)i > lim.rlim_cur)
+	{
+		ft_putendl_fd("lsh : Too many processes in the pipeline", 2);
+		return (1);
+	}
+	return (0);
+}
+
 int			msh_pipe(t_cmds **cmds, t_shell *shell)
 {
 	int		ret;
 
 	save_fd_original_state(shell);
 	delete_pipe_nodes(cmds);
-	ret = pipeline((*cmds), shell);
+	if (!check_nb_pipes(*cmds))
+		ret = pipeline((*cmds), shell);
+	else
+		ret = 1;
 	forward_pipes(cmds);
 	restore_fd_original_state(shell);
 	return (ret);

@@ -14,9 +14,15 @@
 #include "../../includes/minishell.h"
 #include "../../includes/msh_parser.h"
 
+#include <errno.h>
+
 int		pipe_error(void)
 {
-	ft_putendl_fd("Pipe ERROR", 2);
+	ft_putstr_fd("lsh: pipe error: ", 2);
+	if (errno == ENFILE)
+		ft_putendl_fd("Too many opened files", 2);
+	else if (errno == EMFILE)
+		ft_putendl_fd("Too many used fds", 2);
 	return (1);
 }
 

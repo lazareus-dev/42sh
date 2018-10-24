@@ -35,6 +35,10 @@ static int	file_error(char *filename, int type)
 	return (1);
 }
 
+/*
+**	Handle [n]<<[delimiter]
+*/
+
 static int	handle_here_doc(t_redir *redir)
 {
 	int		ret;
@@ -43,14 +47,19 @@ static int	handle_here_doc(t_redir *redir)
 	if (pipe(fd) < 0)
 		return (pipe_error());
 	if (redir->hdoc.here_doc)
-		write(fd[1], redir->hdoc.here_doc, ft_strlen(redir->hdoc.here_doc));
-	close(fd[1]);
-	ret = dup2(fd[0], redir->io_nbr);
-	close(fd[0]);
+		write(fd[WRITE_END], redir->hdoc.here_doc,
+			ft_strlen(redir->hdoc.here_doc));
+	close(fd[WRITE_END]);
+	ret = dup2(fd[READ_END], redir->io_nbr);
+	close(fd[READ_END]);
 	if (ret < 0)
 		return (fd_error(redir->filename, 0));
 	return (0);
 }
+
+/*
+**	Handle [n]>[word], [n]>>[word], [n]<[word], [n]<>[word]
+*/
 
 static int	handle_file(t_redir *redir)
 {
@@ -76,6 +85,10 @@ static int	handle_file(t_redir *redir)
 		return (file_error(redir->filename, 0));
 	return (0);
 }
+
+/*
+**	Handle [n]>&[word]
+*/
 
 static int	handle_aggreg(t_redir *redir)
 {
