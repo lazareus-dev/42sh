@@ -21,11 +21,26 @@
 static void	insert_completion(t_shell *shell, char *word)
 {
 	int	i;
+	int	x;
+	int	y;
 
 	i = shell->input.compl.word_len;
 	while (i--)
 		backspace(shell);
+	x = shell->input.cursor.x;
+	y = shell->input.cursor.y;
+	i = shell->input.i + ft_strlen(word);
 	paste_copy(shell, word);
+	shell->input.i = i;
+	x += ft_strlen(word);
+	while (x >= shell->input.nb_co + 1)
+	{
+		x -= shell->input.nb_co + 1;
+		y++;
+	}
+	shell->input.cursor.x = x;
+	shell->input.cursor.y = y;
+	util_move(shell->input.cursor.x, shell->input.cursor.y);
 }
 
 static int	update_screen(t_shell *shell)
