@@ -23,6 +23,8 @@ int		pipe_error(void)
 		ft_putendl_fd("Too many opened files", 2);
 	else if (errno == EMFILE)
 		ft_putendl_fd("Too many used fds", 2);
+	while (wait(NULL) > 0)
+		;
 	return (1);
 }
 
