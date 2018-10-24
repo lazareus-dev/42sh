@@ -127,15 +127,6 @@ int			print_arg_delete_last(t_history *history)
 
 int			clear_history(t_shell *shell)
 {
-	int		hist_fd;
-	char	*file;
-
-	file = msh_getenv("HISTFILE", shell);
 	free_histlst(&(shell->history));
-	shell->history->nb_node = 0;
-	if ((hist_fd = open(file, O_RDONLY | O_WRONLY | O_TRUNC)) < 0)
-		return (1);
-	else
-		close(hist_fd);
 	return (0);
 }
