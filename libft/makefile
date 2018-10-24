@@ -78,7 +78,6 @@ INC = -I libft.h -I ./ft_printf/ft_printf.h
 all: $(NAME)
 
 $(NAME): $(OBJS) $(PFOBJS)
-	@echo "\033[0;96m$(NAME): Compiling ⏳️\033[0m"
 	@ar crs $@ $^
 	@echo "\033[0;35m$(NAME): Ready to go ️🏎️ \033[0m"
 

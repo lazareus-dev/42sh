@@ -90,9 +90,17 @@ LIB_INC     =   -I $(L_FT)/libft.h
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
+lib: 
+		@if (make -q -C $(L_FT)); then \
+			echo "\033[0;35mlibft.a: Ready to go ️🏎️ \033[0m";\
+		fi;
+		@if !(make -q -C $(L_FT)); then \
+			echo "\033[0;96mlibft.a: Compiling ⏳️\033[0m"; \
+			make -C $(L_FT); \
+		fi;
+
+$(NAME): $(OBJECTS) lib
 		@echo "\033[0;96m$(NAME): Compiling ⏳️\033[0m"
-	    @$(MAKE) -C $(L_FT)
 		@$(CC) -I ./includes $(OBJECTS) $(TERMCAP_LNK) $(LIB_LNK) -o $@
 		@echo "\033[1;34m~ Welcome to LazySH ~\033[0m"
 
