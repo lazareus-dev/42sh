@@ -14,6 +14,7 @@
 #include "../../includes/minishell.h"
 #include "../../includes/msh_input.h"
 #include "../../includes/msh_var_utils.h"
+#include "../../includes/msh_completion.h"
 
 #include <dirent.h>
 
