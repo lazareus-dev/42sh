@@ -23,7 +23,6 @@ int	ft_hash_addkv(t_hash_table *hashtable, char *key, char *value)
 	hashkey /= 2;
 	hashkey %= hashtable->size;
 	current_list = ft_hash_findkv(hashtable, key, value);
-	dprintf(1, "\nHASH : %d\nkey = %s <---> value = %s", hashkey, key, value);
 	if (current_list != NULL)
 		return (1);
 	if (!(new_list = (t_list *)malloc(sizeof(t_list))))
@@ -31,6 +30,5 @@ int	ft_hash_addkv(t_hash_table *hashtable, char *key, char *value)
 	new_list->content = ft_strdup(value);
 	new_list->next = hashtable->table[hashkey];
 	hashtable->table[hashkey] = new_list;
-	dprintf(1, " ADDED");
 	return (0);
 }

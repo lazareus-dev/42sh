@@ -52,13 +52,6 @@ int		parse_word(t_input *input, t_shell *shell)
 	return (0);
 }
 
-void	debug_compl(t_compl compl)
-{
-	dprintf(2, "word = [%s]\n", compl.word);
-	dprintf(2, "wordlen = [%zu]\n", compl.word_len);
-	dprintf(2, "middleofw = [%d]\n", compl.middleofword);
-}
-
 void	parse_token(t_tokenlst *toklst, t_input *input, char *buff)
 {
 	char	*ptr;
