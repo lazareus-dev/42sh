@@ -31,8 +31,6 @@ int		is_redirection(char *token)
 		return (LESSGREAT);
 	else if (ft_strequ(token, "<<-"))
 		return (DLESSDASH);
-	else if (ft_strequ(token, ">|"))
-		return (CLOBBER);
 	else
 		return (NO_OP);
 }
