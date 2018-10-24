@@ -18,6 +18,8 @@ char	*get_match_hist_contain(char *needle, t_history *history)
 {
 	int		i;
 
+	if (!needle)
+		return (NULL);
 	i = history->nb_node;
 	while (--i)
 	{
@@ -32,6 +34,8 @@ char	*get_match_hist_begin(char *needle, t_history *history)
 	int		i;
 	char	*match;
 
+	if (!needle)
+		return (NULL);
 	i = history->nb_node;
 	match = NULL;
 	while (i--)

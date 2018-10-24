@@ -48,7 +48,7 @@ typedef enum		e_optype
 	GREATAND,
 	LESSGREAT,
 	DLESSDASH,
-	CLOBBER,
+	ANDGREAT,
 	AND,
 	DSEMI,
 	PROMPT

@@ -14,6 +14,7 @@
 #include "../../includes/minishell.h"
 #include "../../includes/msh_parser.h"
 #include "../../includes/msh_lstenv.h"
+#include "../../includes/msh_hashbin.h"
 #include "../../includes/msh_var_utils.h"
 
 int		ft_update_var(t_var *node, char *new_value)
@@ -46,6 +47,8 @@ int		ft_set_local_var(char *var, t_shell *shell)
 		ft_update_var(node, assignment);
 	else
 		add_new_var(assignment, &shell->local_var, PRIVATE);
+	if (!ft_strncmp(var, "PATH=", 5))
+		reset_bintable(1, shell);
 	ft_strdel(&assignment);
 	return (0);
 }
