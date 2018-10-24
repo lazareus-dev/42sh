@@ -22,7 +22,9 @@ size_t	get_event_needle(char *haystack, t_event *event)
 	tmp = NULL;
 	i = 0;
 	while (haystack[i] && haystack[i] != '?'
-	&& !is_wd_des(haystack[i]) && ft_isprint(haystack[i]))
+	&& !is_wd_des(haystack[i])
+	&& ft_isprint(haystack[i])
+	&& haystack[i] != ' ')
 		i++;
 	if (i)
 		tmp = ft_strsub(haystack, 0, i);
