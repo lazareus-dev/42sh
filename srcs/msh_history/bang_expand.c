@@ -49,12 +49,10 @@ int		history_expansion(char **line, char **bang, char *ptr, t_shell *shell)
 	init_event(&event);
 	ptr++;
 	ret = parse_bang(&ptr, &event);
-	dprintf(2, "index = %d\n", event.index);
 	if (!ret)
 		ret = process_event(&event, *bang, shell);
 	if (!ret)
 	{
-		dprintf(2, "event->hist = [%s]\n", event.hist);
 		ret = process_wd_des(&event, shell);
 		if (!ret)
 		{
