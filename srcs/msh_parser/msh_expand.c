@@ -41,27 +41,11 @@ int			check_if_quoted(char *dollar, char *token, int *escape, int *quoted)
 	return (ret);
 }
 
-static int	is_escaped(char *needle, char *token)
-{
-	int		escaped;
-
-	escaped = 0;
-	while (*token || token == needle)
-	{
-		if (*token == '\\')
-			escaped = 1;
-		if ((*token == '\\') && ((token + 1) == needle))
-			break ;
-		token++;
-	}
-	return (escaped);
-}
-
 static void	expand_tilde_dollar_cmd(char **word, t_shell *shell)
 {
 	char	*tilde;
 
-	if ((tilde = ft_strchr(*word, '~')) && !is_escaped(tilde, *word))
+	if ((tilde = ft_strchr(*word, '~')) && !ft_ptr_is_quoted(tilde, *word))
 		*word = expand_tilde_regular(*word, shell);
 	if (*word && ft_strchr(*word, '$'))
 		ft_expand_dollar(word, shell);
