@@ -127,6 +127,12 @@ int			print_arg_delete_last(t_history *history)
 
 int			clear_history(t_shell *shell)
 {
+	int i;
+
+	i = 0;
+	while (shell->history->hash_hist[i])
+		shell->history->hash_hist[i++] = NULL;
+	shell->history->nb_node = 0;
 	free_histlst(&(shell->history));
 	return (0);
 }

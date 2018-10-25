@@ -50,6 +50,7 @@ void	free_histlst(t_history **head)
 	{
 		hook = del->next;
 		ft_strdel(&del->line);
+		del->line = NULL;
 		free(del);
 		del = hook;
 	}
