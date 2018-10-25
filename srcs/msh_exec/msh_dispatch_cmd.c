@@ -99,10 +99,10 @@ int			dispatch_cmd(char **av, t_shell *shell, int fork)
 	if (!av || av[0] == NULL)
 		return (1);
 	cmd_path = NULL;
-	if (ft_strchr(av[0], '/'))
-		ret = msh_exec(av[0], av, shell, fork);
-	else if (is_valid_assignment(*av))
+	if (is_valid_assignment(*av))
 		ret = msh_local_var(av, shell);
+	else if (ft_strchr(av[0], '/'))
+		ret = msh_exec(av[0], av, shell, fork);
 	else if (is_builtin(av))
 		ret = msh_builtin(av, shell);
 	else if ((cmd_path = get_hashbin_path(av[0], shell->bin_table)) != NULL)
