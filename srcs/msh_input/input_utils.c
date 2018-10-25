@@ -37,7 +37,7 @@ int		check_for_history_expansion(t_shell *shell)
 	if (ft_strchr(shell->input.line, '!'))
 	{
 		ret = ft_expand_bang(&shell->input.line, shell);
-		if (ret == 1 || ret == 2)
+		if (ret == 1 || ret == 2 || ret == 6)
 			return (1);
 		else if (ret == 0)
 			ft_putstr(shell->input.line);

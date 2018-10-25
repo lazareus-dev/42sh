@@ -17,7 +17,9 @@
 int		bang_error(t_event event, int type)
 {
 	ft_putstr_fd("lsh: ", 2);
-	if (type == EVENT_NOT_FOUND)
+	if (type == NOT_MODIFIER)
+		ft_putendl_fd("unrecognized history modifier", 2);
+	else if (type == EVENT_NOT_FOUND)
 	{
 		ft_putstr_fd(event.ev_designator, 2);
 		ft_putstr_fd(": ", 2);
@@ -46,8 +48,9 @@ int		history_expansion(char **line, char **bang, char *ptr, t_shell *shell)
 
 	init_event(&event);
 	ptr++;
-	parse_bang(&ptr, &event);
-	ret = process_event(&event, *bang, shell);
+	ret = parse_bang(&ptr, &event);
+	if (!ret)
+		ret = process_event(&event, *bang, shell);
 	if (!ret)
 	{
 		ret = process_wd_des(&event, shell);

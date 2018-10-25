@@ -22,6 +22,7 @@
 # define OUT_OF_RANGE	3
 # define REQUIRE_ARG	4
 # define TOO_MANY_ARG	5
+# define NOT_MODIFIER	6
 
 # define HIST_USAGE1	"history: usage: history [-c] [-d offset] [n] or "
 # define HIST_USAGE2 	"history -awrn [filename] or history -ps arg [arg...]"

@@ -14,6 +14,17 @@
 #include "../../includes/minishell.h"
 #include "../../includes/msh_history.h"
 
+int		wd_error(char c, int type)
+{
+	ft_putstr_fd("lsh: ", 2);
+	if (type == NOT_MODIFIER)
+	{
+		ft_putchar_fd(c, 2);
+		ft_putstr_fd(": ", 2);
+	}
+	return (type);
+}
+
 void	parse_wd_begin(char **bang, t_event *event)
 {
 	if (ft_isdigit(**bang))
@@ -34,6 +45,8 @@ void	parse_wd_begin(char **bang, t_event *event)
 		}
 		(*bang)++;
 	}
+	else if (**bang == '-')
+		event->wd_start = 0;
 }
 
 void	parse_wd_end(char **bang, t_event *event)
@@ -44,11 +57,11 @@ void	parse_wd_end(char **bang, t_event *event)
 	{
 		event->wd_des |= WD_DASH;
 		(*bang)++;
-		if (**bang == '\n')
-			event->wd_last_arg = 0;
+		event->wd_last_arg = (**bang == '\n') ? 0 : event->wd_last_arg;
 		if (ft_isdigit(**bang))
 		{
-			event->wd_end = get_event_index(*bang, &event->index);
+			get_event_index(*bang, &event->index);
+			event->wd_end = event->index;
 			(*bang) += ft_nbr_len(event->wd_start);
 		}
 	}
@@ -72,15 +85,17 @@ int		parse_wd_des(char **bang, t_event *event)
 
 	if (!is_wd_des(**bang))
 		return (0);
-	if (**bang == '$')
-		event->ev_des = BANG;
 	if (**bang == ':')
 		(*bang)++;
-	event->wd_des |= WD_INDEX;
+	if (!is_wd_des(**bang) && !ft_isdigit(**bang))
+		return (NOT_MODIFIER);
 	if ((*(*bang - 1)) == ':')
 		beginning = *bang - 1;
 	else
 		beginning = *bang;
+	if (**bang == '$')
+		event->ev_des = BANG;
+	event->wd_des |= WD_INDEX;
 	parse_wd_begin(bang, event);
 	parse_wd_end(bang, event);
 	end = *bang;
@@ -92,6 +107,7 @@ int		parse_bang(char **bang, t_event *event)
 {
 	char	*beginning;
 	char	*end;
+	int		ret;
 
 	beginning = *bang - 1;
 	if ((event->ev_des = is_ev_des(**bang)))
@@ -104,6 +120,6 @@ int		parse_bang(char **bang, t_event *event)
 		(*bang) += get_event_index(*bang, &event->index);
 	end = *bang;
 	event->ev_designator = ft_strndup(beginning, (end - beginning));
-	parse_wd_des(bang, event);
-	return (0);
+	ret = parse_wd_des(bang, event);
+	return (ret);
 }
