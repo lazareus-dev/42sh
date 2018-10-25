@@ -48,7 +48,6 @@ int		process_event_with_range(t_event *event, t_tokenlst *head)
 	int			i;
 	int			end;
 
-	ft_putendl("EV W/RANGE");
 	if (event->wd_des & WD_DOLLAR)
 		event->wd_last_arg = 1;
 	if (event->wd_des & WD_CARET)
@@ -57,8 +56,11 @@ int		process_event_with_range(t_event *event, t_tokenlst *head)
 	end = event->wd_last_arg ? head->nb_token - 1 : event->wd_end;
 	if (end == -1)
 		end = head->nb_token - 2;
+	dprintf(2, "start = %d\n end = %d\n", i, end);
+	dprintf(2, "nb_tok = %d\n", head->nb_token);
 	if (end < i || end > head->nb_token)
 		return (BAD_WD_SPECIF);
+	ft_putendl("NAH");
 	while (i <= end)
 	{
 		event->expanded_event = join_and_free(event->expanded_event,
@@ -83,6 +85,7 @@ int		process_wd_des(t_event *event, t_shell *shell)
 	ret = 0;
 	tokenlst = init_tokenlst();
 	tokenize(tokenlst, event->hist);
+	dprintf(2, "event->hist = [%s]\n", event->hist);
 	if (!(event->wd_des & WD_DASH))
 		ret = process_event_without_range(event, tokenlst);
 	else
@@ -99,7 +102,7 @@ int		process_event(t_event *event, char *ptr, t_shell *shell)
 	if (event->ev_des == BANG)
 		event->index = history->nb_node;
 	else if (event->ev_des == DASH)
-		event->index = history->nb_node - event->index + 1;
+		event->index = history->nb_node - event->index;
 	if (event->ev_des == QUEST_MARK)
 		event->hist = get_match_hist_contain(event->needle, history);
 	else if (event->ev_des == HASH)
@@ -108,7 +111,7 @@ int		process_event(t_event *event, char *ptr, t_shell *shell)
 	else if (event->needle)
 		event->hist = get_match_hist_begin(event->needle, history);
 	else
-		event->hist = get_hist(event->index - 1, history);
+		event->hist = get_hist(event->index, history);
 	if (!event->hist)
 		return (1);
 	return (0);
