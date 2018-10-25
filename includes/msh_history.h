@@ -138,7 +138,6 @@ void				init_event(t_event *event);
 void				clear_event(t_event *event);
 int					process_event(t_event *event, char *ptr, t_shell *shell);
 int					process_wd_des(t_event *event, t_shell *shell);
-int					bang_error(t_event event, int type);
 size_t				get_event_needle(char *haystack, t_event *event);
 int					get_event_index(char *nb_start, int *index);
 
