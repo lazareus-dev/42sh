@@ -61,8 +61,7 @@ void	parse_wd_end(char **bang, t_event *event)
 		if (ft_isdigit(**bang))
 		{
 			get_event_index(*bang, &event->wd_end);
-			
-			(*bang) += ft_nbr_len(event->wd_start);
+			(*bang) += ft_nbr_len(event->wd_end);
 		}
 	}
 	if (**bang == '^')
