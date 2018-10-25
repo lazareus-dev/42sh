@@ -16,7 +16,6 @@
 #include "../../includes/msh_error.h"
 #include "../../includes/msh_var_utils.h"
 #include "../../includes/msh_setunsetenv.h"
-#include <sys/stat.h>
 
 static void	execute_cd(t_cd *cd, t_shell *shell, char *path)
 {
