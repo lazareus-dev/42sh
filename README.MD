@@ -27,6 +27,7 @@ Made with love and care by [Thibault Le Cozanet](https://github.com/lazylazareus
     * Cursor movement
         * <kbd>Right/Left</kbd> Move letter by letter
         * <kbd>Alt</kbd> + <kbd>Right/Left</kbd> Move word by word
+        * <kbd>Alt</kbd> + <kbd>Up/Down</kbd> Move up/down from one line to another in the command while remaining in the same column
         * <kbd>Home/End</kbd> Get to the beginning/end of the command
     * Cut/copy/paste
         * <kbd>Alt</kbd> + <kbd>A</kbd> Cut the whole command
