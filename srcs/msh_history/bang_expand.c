@@ -14,7 +14,7 @@
 #include "../../includes/minishell.h"
 #include "../../includes/msh_history.h"
 
-int		bang_error(t_event event, int type)
+static int	bang_error(t_event event, int type)
 {
 	ft_putstr_fd("lsh: ", 2);
 	if (type == NOT_MODIFIER)
@@ -34,13 +34,14 @@ int		bang_error(t_event event, int type)
 	return (type);
 }
 
-int		is_bang_delimiter(char c)
+static int	is_bang_delimiter(char c)
 {
 	return (c == '(' || c == ' ' || c == '\t'
 		|| c == EOF || c == '=' || c == '\n');
 }
 
-int		history_expansion(char **line, char **bang, char *ptr, t_shell *shell)
+static int	history_expansion(char **line, char **bang, char *ptr,
+	t_shell *shell)
 {
 	t_event	event;
 	size_t	hook;
@@ -67,7 +68,7 @@ int		history_expansion(char **line, char **bang, char *ptr, t_shell *shell)
 	return (ret);
 }
 
-int		ft_count_char_occurences(char *str, char c)
+static int	ft_count_char_occurences(char *str, char c)
 {
 	int	nb_occurences;
 	int	i;
@@ -90,7 +91,7 @@ int		ft_count_char_occurences(char *str, char c)
 ** the history event associated.
 */
 
-int		ft_expand_bang(char **line, t_shell *shell)
+int			ft_expand_bang(char **line, t_shell *shell)
 {
 	char	*bang;
 	char	*ptr;
