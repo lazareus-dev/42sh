@@ -15,7 +15,7 @@
 #include "../../includes/msh_history.h"
 #include "../../includes/msh_var_utils.h"
 
-void	backup_history(t_shell *shell)
+void		backup_history(t_shell *shell)
 {
 	int		hist_fd;
 	char	*file;
@@ -32,7 +32,7 @@ void	backup_history(t_shell *shell)
 	}
 }
 
-int		add_hist_to_table(t_history **history, char *line)
+static int	add_hist_to_table(t_history **history, char *line)
 {
 	if ((*history)->hash_hist_size <= (*history)->nb_node + 1)
 	{
@@ -45,7 +45,7 @@ int		add_hist_to_table(t_history **history, char *line)
 	return (0);
 }
 
-int		add_hist_to_lst(char *line, t_shell *shell)
+int			add_hist_to_lst(char *line, t_shell *shell)
 {
 	t_hist	*node;
 
@@ -62,7 +62,7 @@ int		add_hist_to_lst(char *line, t_shell *shell)
 	return (0);
 }
 
-int		print_history(t_history *history, int start)
+int			print_history(t_history *history, int start)
 {
 	char		**table;
 	int			margin;
@@ -86,7 +86,7 @@ int		print_history(t_history *history, int start)
 **	history built-in entry point
 */
 
-int		msh_history(char **av, t_shell *shell)
+int			msh_history(char **av, t_shell *shell)
 {
 	int	ret;
 

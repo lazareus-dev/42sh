@@ -13,6 +13,7 @@
 
 #include "../../includes/minishell.h"
 #include "../../includes/msh_input.h"
+
 #include <termcap.h>
 
 void		go_right(t_shell *shell)

@@ -13,7 +13,6 @@
 
 #include "../../includes/msh_lexer.h"
 #include "../../includes/msh_input.h"
-#include "../../includes/msh_terminal.h"
 
 static void		add_to_lst_and_free(t_tokenlst *head, char **token,
 	char delimiter)

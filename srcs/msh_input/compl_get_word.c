@@ -15,7 +15,7 @@
 #include "../../includes/msh_lexer.h"
 #include "../../includes/msh_parser.h"
 
-int		quote_parsing(t_input *input)
+static int	quote_parsing(t_input *input)
 {
 	if (is_quoting_char(input->compl.word[0]))
 		input->compl.quoted = is_quoting_char(input->compl.word[0]);
@@ -30,7 +30,7 @@ int		quote_parsing(t_input *input)
 **	Handle the quoting.
 */
 
-int		parse_word(t_input *input, t_shell *shell)
+static int	parse_word(t_input *input, t_shell *shell)
 {
 	char *tmp_word;
 
@@ -52,7 +52,7 @@ int		parse_word(t_input *input, t_shell *shell)
 	return (0);
 }
 
-void	parse_token(t_tokenlst *toklst, t_input *input, char *buff)
+static void	parse_token(t_tokenlst *toklst, t_input *input, char *buff)
 {
 	char	*ptr;
 	size_t	buflen;
@@ -84,7 +84,7 @@ void	parse_token(t_tokenlst *toklst, t_input *input, char *buff)
 **	Get the letters ("word") to be completed
 */
 
-int		get_word(t_input *input, t_shell *shell)
+int			get_word(t_input *input, t_shell *shell)
 {
 	char		*buff;
 	t_tokenlst	*toklst;

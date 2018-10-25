@@ -17,14 +17,14 @@
 #include "../../includes/msh_hashbin.h"
 #include "../../includes/msh_var_utils.h"
 
-int		ft_update_var(t_var *node, char *new_value)
+int			ft_update_var(t_var *node, char *new_value)
 {
 	ft_strdel(&node->var);
 	node->var = ft_strdup(new_value);
 	return (0);
 }
 
-int		add_new_var(char *var, t_headlst *lst, int exported)
+int			add_new_var(char *var, t_headlst *lst, int exported)
 {
 	t_var	*elem;
 
@@ -35,7 +35,7 @@ int		add_new_var(char *var, t_headlst *lst, int exported)
 	return (0);
 }
 
-int		ft_set_local_var(char *var, t_shell *shell)
+static int	ft_set_local_var(char *var, t_shell *shell)
 {
 	t_var	*node;
 	char	*assignment;
@@ -53,7 +53,7 @@ int		ft_set_local_var(char *var, t_shell *shell)
 	return (0);
 }
 
-int		msh_local_var(char **av, t_shell *shell)
+int			msh_local_var(char **av, t_shell *shell)
 {
 	char	**ptr;
 
@@ -70,7 +70,7 @@ int		msh_local_var(char **av, t_shell *shell)
 	return (0);
 }
 
-int		init_local_var(t_shell *shell)
+int			init_local_var(t_shell *shell)
 {
 	char	*histfile;
 	char	*getpwd;

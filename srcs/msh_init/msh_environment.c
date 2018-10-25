@@ -16,7 +16,7 @@
 #include "../../includes/msh_var_utils.h"
 #include "../../includes/msh_lstenv.h"
 
-void	init_shlvl(t_shell *shell)
+static void	init_shlvl(t_shell *shell)
 {
 	char	*tmp_lvl;
 	char	*shlvl;
@@ -39,7 +39,7 @@ void	init_shlvl(t_shell *shell)
 ** an empty environment has been passed to the Lazyshell
 */
 
-void	init_default_var(t_shell *shell)
+static void	init_default_var(t_shell *shell)
 {
 	char	*pwd;
 	char	*path;
@@ -62,7 +62,7 @@ void	init_default_var(t_shell *shell)
 ** Build the linked-list version of the environ char**
 */
 
-void	init_environ(t_shell *shell)
+void		init_environ(t_shell *shell)
 {
 	extern char **environ;
 	t_var		*elem;

@@ -13,7 +13,7 @@
 
 #include "../../includes/minishell.h"
 #include "../../includes/msh_input.h"
-#include <sys/ioctl.h>
+
 #include <termcap.h>
 
 static int	disp_room_error(t_shell *shell)

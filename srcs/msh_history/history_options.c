@@ -13,9 +13,8 @@
 
 #include "../../includes/minishell.h"
 #include "../../includes/msh_history.h"
-#include "../../includes/msh_var_utils.h"
 
-int	msh_history_error(char **av, int status)
+int			msh_history_error(char **av, int status)
 {
 	ft_putstr_fd("lsh: history: ", 2);
 	if (status == TOO_MANY_ARG)
@@ -35,7 +34,7 @@ int	msh_history_error(char **av, int status)
 	return (1);
 }
 
-int	print_cropped_history(char **av, t_shell *shell)
+static int	print_cropped_history(char **av, t_shell *shell)
 {
 	int	i;
 	int	start;
@@ -54,7 +53,7 @@ int	print_cropped_history(char **av, t_shell *shell)
 	return (print_history(shell->history, start));
 }
 
-int	process_history_options(t_shell *shell)
+static int	process_history_options(t_shell *shell)
 {
 	int ret;
 
@@ -78,7 +77,7 @@ int	process_history_options(t_shell *shell)
 	return (ret);
 }
 
-int	history_options(char **av, t_shell *shell)
+int			history_options(char **av, t_shell *shell)
 {
 	if (!av || !av[0])
 		return (1);

@@ -15,7 +15,6 @@
 #include "../../includes/msh_error.h"
 #include "../../includes/msh_terminal.h"
 
-#include <termios.h>
 #include <termcap.h>
 #include <fcntl.h>
 

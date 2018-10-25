@@ -98,7 +98,7 @@ int		process_event(t_event *event, char *ptr, t_shell *shell)
 	if (event->ev_des == BANG)
 		event->index = history->nb_node;
 	else if (event->ev_des == DASH)
-		event->index = history->nb_node - event->index;
+		event->index = history->nb_node - event->index + 1;
 	if (event->ev_des == QUEST_MARK)
 		event->hist = get_match_hist_contain(event->needle, history);
 	else if (event->ev_des == HASH)

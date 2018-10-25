@@ -18,7 +18,7 @@
 
 #include <dirent.h>
 
-t_list	*get_reg_matches(t_compl *compl, int only_dirs)
+static t_list	*get_reg_matches(t_compl *compl, int only_dirs)
 {
 	t_list			*matches;
 	struct dirent	*dirent;
@@ -40,7 +40,7 @@ t_list	*get_reg_matches(t_compl *compl, int only_dirs)
 	return (matches);
 }
 
-t_list	*get_cmd_matches(t_compl *compl, t_shell *shell)
+static t_list	*get_cmd_matches(t_compl *compl, t_shell *shell)
 {
 	t_list	*matches;
 
@@ -50,7 +50,7 @@ t_list	*get_cmd_matches(t_compl *compl, t_shell *shell)
 	return (matches);
 }
 
-t_list	*get_var_matches(t_compl *compl, t_shell *shell)
+static t_list	*get_var_matches(t_compl *compl, t_shell *shell)
 {
 	t_list	*matches;
 
@@ -60,7 +60,7 @@ t_list	*get_var_matches(t_compl *compl, t_shell *shell)
 	return (matches);
 }
 
-t_list	*get_matches(t_compl *compl)
+t_list			*get_matches(t_compl *compl)
 {
 	t_shell	*shell;
 	t_list	*matches;

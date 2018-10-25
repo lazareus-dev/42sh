@@ -18,7 +18,7 @@
 #include "../../includes/msh_history.h"
 #include "../../includes/msh_terminal.h"
 
-void	print_shell_header(void)
+static void		print_shell_header(void)
 {
 	ft_putstr_fd("\e[H\e[J", 0);
 	ft_putstr_fd("\e[1m\e[96m", 0);
@@ -39,7 +39,7 @@ void	print_shell_header(void)
 	ft_putendl_fd("\e[0m", 0);
 }
 
-void	init_shell_var(t_shell *shell)
+static void		init_shell_var(t_shell *shell)
 {
 	shell->exit_status = 0;
 	shell->exit = 0;
@@ -53,7 +53,7 @@ void	init_shell_var(t_shell *shell)
 	shell->fd_orig[2] = 2;
 }
 
-t_shell	*init_shell(void)
+static t_shell	*init_shell(void)
 {
 	t_shell *shell;
 
@@ -76,7 +76,7 @@ t_shell	*init_shell(void)
 ** Get or create the GOD SHELL VARIABLE
 */
 
-t_shell	*get_shell(void)
+t_shell			*get_shell(void)
 {
 	static t_shell	*shell;
 

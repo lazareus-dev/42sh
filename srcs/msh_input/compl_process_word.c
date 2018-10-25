@@ -12,7 +12,6 @@
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include "../../includes/msh_input.h"
 #include "../../includes/msh_completion.h"
 
 static char	*get_closest_match(char *word, size_t max_len, t_list *matches)
@@ -41,7 +40,7 @@ static char	*get_closest_match(char *word, size_t max_len, t_list *matches)
 **	Add quoting, escaping, last space if file or last slash if dir
 */
 
-void		process_closest_match(char **original, t_compl compl, int full)
+static void	process_closest_match(char **original, t_compl compl, int full)
 {
 	char	*output;
 	int		suffix;

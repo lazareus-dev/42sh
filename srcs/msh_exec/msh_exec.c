@@ -25,7 +25,7 @@ static int	msh_nosuchfile(char *cmd)
 	return (127);
 }
 
-int			msh_isdir(char *cmd)
+static int	msh_isdir(char *cmd)
 {
 	ft_putstr_fd("lsh: ", 2);
 	ft_putstr_fd(cmd, 2);
@@ -37,7 +37,7 @@ int			msh_isdir(char *cmd)
 **	Execute cmd
 */
 
-int			exec(char *cmd, char **args, char **tab_env)
+static int	exec(char *cmd, char **args, char **tab_env)
 {
 	if (execve(cmd, args, tab_env) == -1)
 		ft_putendl_fd("msh_exec: execve: error", 2);
@@ -49,7 +49,7 @@ int			exec(char *cmd, char **args, char **tab_env)
 ** Fork and execute cmd
 */
 
-int			fork_and_exec(char *cmd, char **args, char **tab_env)
+static int	fork_and_exec(char *cmd, char **args, char **tab_env)
 {
 	pid_t	pid;
 	int		status;

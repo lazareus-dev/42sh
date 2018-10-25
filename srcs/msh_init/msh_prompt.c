@@ -17,7 +17,7 @@
 
 #include <pwd.h>
 
-char		*get_usr(void)
+static char	*get_usr(void)
 {
 	char			*usr;
 	struct passwd	*p;
@@ -30,7 +30,7 @@ char		*get_usr(void)
 	return (usr);
 }
 
-int			get_path(char *path, t_shell *shell)
+static int	get_path(char *path, t_shell *shell)
 {
 	char	*pwd;
 	char	*ptr;

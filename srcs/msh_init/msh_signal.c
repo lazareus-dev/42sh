@@ -25,7 +25,7 @@ static void	handle_winch(int sig)
 	signal(SIGWINCH, handle_winch);
 }
 
-void		ctrl_c(t_shell *shell)
+static void	ctrl_c(t_shell *shell)
 {
 	char	c;
 

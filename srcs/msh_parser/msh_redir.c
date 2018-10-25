@@ -15,7 +15,7 @@
 #include "../../includes/msh_lexer.h"
 #include "../../includes/msh_parser.h"
 
-void	free_redirlst(t_redir **redir)
+void		free_redirlst(t_redir **redir)
 {
 	t_redir *node;
 	t_redir	*hook;
@@ -33,7 +33,7 @@ void	free_redirlst(t_redir **redir)
 	}
 }
 
-void	init_redir(t_redir *redir)
+static void	init_redir(t_redir *redir)
 {
 	redir->type = 0;
 	redir->io_nbr = -1;
@@ -45,7 +45,7 @@ void	init_redir(t_redir *redir)
 	redir->next = NULL;
 }
 
-void	add_redir_node(t_cmds **node, t_redir *redir)
+static void	add_redir_node(t_cmds **node, t_redir *redir)
 {
 	t_redir	*run;
 
@@ -62,7 +62,7 @@ void	add_redir_node(t_cmds **node, t_redir *redir)
 	}
 }
 
-void	remove_redir_nodes(t_cmds *head)
+void		remove_redir_nodes(t_cmds *head)
 {
 	t_token	*tok;
 	t_token *hook;
@@ -91,7 +91,7 @@ void	remove_redir_nodes(t_cmds *head)
 **	Creates a redir struct and fills it with the tokens informations
 */
 
-int		create_redir(t_cmds *node, t_token *tok)
+int			create_redir(t_cmds *node, t_token *tok)
 {
 	t_redir	*redir;
 
