@@ -58,14 +58,6 @@ int		is_operator_char(char c)
 			|| c == '&');
 }
 
-int		is_operator_ctrl_char(char c)
-{
-	return (
-			c == '|'
-			|| c == ';'
-			|| c == '&');
-}
-
 int		get_operator_type(char *token, int toktype)
 {
 	int	optype;

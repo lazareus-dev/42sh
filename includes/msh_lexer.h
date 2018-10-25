@@ -49,7 +49,6 @@ char				*get_quoted_char(char *str, int *index);
 int					get_token_type(char *token, char delimiter);
 int					get_operator_type(char *token, int toktype);
 int					is_operator_char(char c);
-int					is_operator_ctrl_char(char c);
 int					is_quoting_char(char c);
 int					is_redirection(char *token);
 int					is_operator(char *token);

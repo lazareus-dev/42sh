@@ -14,17 +14,6 @@
 #include "../../includes/minishell.h"
 #include "../../includes/msh_history.h"
 
-int		wd_error(char c, int type)
-{
-	ft_putstr_fd("lsh: ", 2);
-	if (type == NOT_MODIFIER)
-	{
-		ft_putchar_fd(c, 2);
-		ft_putstr_fd(": ", 2);
-	}
-	return (type);
-}
-
 void	parse_wd_begin(char **bang, t_event *event)
 {
 	if (ft_isdigit(**bang))
