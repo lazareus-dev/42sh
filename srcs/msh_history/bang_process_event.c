@@ -48,6 +48,7 @@ int		process_event_with_range(t_event *event, t_tokenlst *head)
 	int			i;
 	int			end;
 
+	ft_putendl("EV W/RANGE");
 	if (event->wd_des & WD_DOLLAR)
 		event->wd_last_arg = 1;
 	if (event->wd_des & WD_CARET)
@@ -56,7 +57,7 @@ int		process_event_with_range(t_event *event, t_tokenlst *head)
 	end = event->wd_last_arg ? head->nb_token - 1 : event->wd_end;
 	if (end == -1)
 		end = head->nb_token - 2;
-	if (end < i)
+	if (end < i || end > head->nb_token)
 		return (BAD_WD_SPECIF);
 	while (i <= end)
 	{
