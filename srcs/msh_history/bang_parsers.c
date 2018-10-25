@@ -60,8 +60,8 @@ void	parse_wd_end(char **bang, t_event *event)
 		event->wd_last_arg = (**bang == '\n') ? 0 : event->wd_last_arg;
 		if (ft_isdigit(**bang))
 		{
-			get_event_index(*bang, &event->index);
-			event->wd_end = event->index;
+			get_event_index(*bang, &event->wd_end);
+			
 			(*bang) += ft_nbr_len(event->wd_start);
 		}
 	}
