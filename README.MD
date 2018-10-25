@@ -18,7 +18,7 @@ Made with love and care by [Thibault Le Cozanet](https://github.com/lazylazareus
 
 ## Bonuses
 * Dynamic autocompletion with <kbd>Tab</kbd>
-* Hash table for binaries and `hash` command
+* Hash table for binaries, `hash` command
 * Command history, `history` and `!` builtins
 * Local variables, `unset` and `export` builtins
 * Inhibitors: double quote ("), simple quote ('), backslash (\\)
