@@ -37,7 +37,7 @@ static int	get_path(char *path, t_shell *shell)
 	int		i;
 
 	i = 0;
-	ft_bzero(path, 1024);
+	ft_bzero(path, 1025);
 	if (!(pwd = ft_strdup(msh_getenv("PWD", shell))))
 	{
 		if (!(pwd = get_pwd()))
@@ -61,7 +61,7 @@ static int	get_path(char *path, t_shell *shell)
 void		prompt(t_shell *shell)
 {
 	char	*usr;
-	char	path[1024];
+	char	path[1025];
 
 	shell->input.len_prompt = 0;
 	usr = get_usr();

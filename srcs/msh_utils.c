@@ -17,10 +17,10 @@
 
 char		*get_pwd(void)
 {
-	char cwd[256];
+	char cwd[4096];
 	char *p;
 
-	ft_bzero(cwd, 256);
+	ft_bzero(cwd, 4096);
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 		return (NULL);
 	else
