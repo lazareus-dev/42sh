@@ -29,6 +29,7 @@ void	ft_putstr_reveal_blanks(char const *s)
 			write(2, "\\t", 2);
 			s++;
 		}
-		write(2, s++, 1);
+		else
+			write(2, s++, 1);
 	}
 }
