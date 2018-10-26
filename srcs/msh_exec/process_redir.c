@@ -120,6 +120,7 @@ int			process_redir(t_cmds *cmd)
 	redir = cmd->redirlst;
 	while (redir && ret == 0)
 	{
+		dprintf(2, "process file = [%s]\n", redir->filename);
 		if (redir->type == GREATAND || redir->type == LESSAND)
 			ret = handle_aggreg(redir);
 		else if (redir->type == DLESS || redir->type == DLESSDASH)

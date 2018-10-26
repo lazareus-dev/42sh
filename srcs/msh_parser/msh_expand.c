@@ -51,15 +51,33 @@ static void	expand_tilde_dollar_cmd(char **word, t_shell *shell)
 		ft_expand_dollar(word, shell);
 }
 
+static void	expansion_redirlst(t_cmds **cmd, t_shell *shell)
+{
+	t_redir *node;
+
+	if (!cmd || !(*cmd) || !(*cmd)->redirlst)
+		return ;
+	node = (*cmd)->redirlst;
+	while (node)
+	{
+		expand_tilde_dollar_cmd(&node->filename, shell);
+		remove_quoting(&node->filename);
+		node = node->next;
+	}
+}
+
 void		msh_expand(t_cmds *cmds, t_shell *shell)
 {
 	int i;
 
 	i = 0;
+	if (!cmds)
+		return ;
 	while (cmds->cmd[i])
 	{
 		expand_tilde_dollar_cmd(&cmds->cmd[i], shell);
 		remove_quoting(&cmds->cmd[i]);
+		expansion_redirlst(&cmds, shell);
 		i++;
 	}
 }

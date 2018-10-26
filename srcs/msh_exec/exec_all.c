@@ -70,9 +70,9 @@ int		exec_regular(t_cmds *cmd, t_shell *shell)
 {
 	int	ret;
 
+	msh_expand(cmd, shell);
 	if ((ret = prerun_cmd(cmd, shell)))
 		return (ret);
-	msh_expand(cmd, shell);
 	ret = dispatch_cmd(cmd->cmd, shell, FORK_IT);
 	restore_fd_original_state(shell);
 	rebuild_fd(cmd->redirlst);

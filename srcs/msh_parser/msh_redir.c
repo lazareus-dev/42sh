@@ -28,6 +28,7 @@ void		free_redirlst(t_redir **redir)
 		hook = node->next;
 		ft_strdel(&node->hdoc.here_doc);
 		ft_strdel(&node->hdoc.delimiter);
+		ft_strdel(&node->filename);
 		free(node);
 		node = hook;
 	}
@@ -112,7 +113,7 @@ int			create_redir(t_cmds *node, t_token *tok)
 	if (redir->type == DLESS || redir->type == DLESSDASH)
 		create_here_doc(tok, redir);
 	else if (tok->next && tok->next->type == WORD)
-		redir->filename = tok->next->token;
+		redir->filename = ft_strdup(tok->next->token);
 	redir->next = NULL;
 	add_redir_node(&node, redir);
 	return (0);
