@@ -60,8 +60,11 @@ static void	expansion_redirlst(t_cmds **cmd, t_shell *shell)
 	node = (*cmd)->redirlst;
 	while (node)
 	{
-		expand_tilde_dollar_cmd(&node->filename, shell);
-		remove_quoting(&node->filename);
+		if (node->filename)
+		{
+			expand_tilde_dollar_cmd(&node->filename, shell);
+			remove_quoting(&node->filename);
+		}
 		node = node->next;
 	}
 }
