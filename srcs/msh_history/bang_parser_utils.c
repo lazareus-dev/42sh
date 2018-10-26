@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include "../../includes/msh_lexer.h"
 #include "../../includes/msh_history.h"
 
 size_t	get_event_needle(char *haystack, t_event *event)
@@ -24,7 +25,8 @@ size_t	get_event_needle(char *haystack, t_event *event)
 	while (haystack[i] && haystack[i] != '?'
 	&& !is_wd_des(haystack[i])
 	&& ft_isprint(haystack[i])
-	&& haystack[i] != ' ')
+	&& haystack[i] != ' '
+	&& !is_operator_char(haystack[i]))
 		i++;
 	if (i)
 		tmp = ft_strsub(haystack, 0, i);
