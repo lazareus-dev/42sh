@@ -3,7 +3,7 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: vbranco <vbranco@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: tle-coza <lazareus-dev@gmail.com>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 13:23:24 by tle-coza     #+#   ##    ##    #+#       */
 /*   Updated: 2018/10/04 18:05:31 by vbranco     ###    #+. /#+    ###.fr     */
