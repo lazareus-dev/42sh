@@ -88,7 +88,7 @@ int			check_nb_pipes(t_cmds *cmd)
 	getrlimit(RLIMIT_NPROC, &lim);
 	i = 0;
 	node = cmd;
-	while (node)
+	while (node && i < INT32_MAX)
 	{
 		i++;
 		node = node->next;

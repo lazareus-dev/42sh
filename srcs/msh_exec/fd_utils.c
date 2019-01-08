@@ -49,7 +49,7 @@ void	save_fd_original_state(t_shell *shell)
 	i = 0;
 	while (i < 3)
 	{
-		shell->fd_orig[i] = dup(i);
+		shell->fd_orig[i] = -1;
 		i++;
 	}
 }
@@ -61,8 +61,8 @@ void	restore_fd_original_state(t_shell *shell)
 	i = 0;
 	while (i < 3)
 	{
-		dup2(shell->fd_orig[i], i);
-		close(shell->fd_orig[i]);
+		if (shell->fd_orig[i] != -1)
+			close(shell->fd_orig[i]);
 		i++;
 	}
 }
@@ -76,6 +76,8 @@ void	rebuild_fd(t_redir *redirlst)
 	{
 		if (redir->fd > 2)
 			close(redir->fd);
+		if (redir->io_nbr > 2)
+			close(redir->io_nbr);
 		redir = redir->next;
 	}
 }

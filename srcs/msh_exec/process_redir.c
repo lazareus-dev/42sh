@@ -113,13 +113,18 @@ static int	handle_aggreg(t_redir *redir)
 
 int			process_redir(t_cmds *cmd)
 {
+	t_shell *shell;
 	t_redir	*redir;
 	int		ret;
 
 	ret = 0;
 	redir = cmd->redirlst;
+	shell = get_shell();
 	while (redir && ret == 0)
 	{
+		if (redir->io_nbr >= 0 && redir->io_nbr <= 2)
+			if (shell->fd_orig[redir->io_nbr] == -1)
+				shell->fd_orig[redir->io_nbr] = dup(redir->io_nbr);
 		if (redir->type == GREATAND || redir->type == LESSAND)
 			ret = handle_aggreg(redir);
 		else if (redir->type == DLESS || redir->type == DLESSDASH)

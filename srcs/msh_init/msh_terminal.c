@@ -57,8 +57,7 @@ int			init_termios(t_shell *shell)
 	get_termtype();
 	if (isatty(STDIN_FILENO) == 0)
 		return (term_error(4));
-	if ((shell->terminal.fd = open(ttyname(STDIN_FILENO), O_RDWR)) == -1)
-		return (term_error(5));
+	shell->terminal.fd = STDIN_FILENO;
 	if (tcgetattr(shell->terminal.fd, &(shell->terminal.orig_termios)) == -1)
 		return (term_error(GET_ATTR_FAIL));
 	if (tcgetattr(shell->terminal.fd, &(shell->terminal.termios)) == -1)
