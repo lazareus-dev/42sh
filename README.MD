@@ -5,7 +5,7 @@ This project was coded in C, following the Norm used by the school (see [Referen
 
 It was designed for MacOS but should work fine on Linux: simply `make` and enjoy!
 
-Made with love and care by [Thibault Le Cozanet](https://github.com/lazylazareus), [Vitor Branco](https://github.com/vbranco) & [Vincent Schlumberger](https://github.com/vischlum)
+Made with love and care by [Thibault Le Cozanet](https://github.com/lazareus-dev), [Vitor Branco](https://github.com/vbranco) & [Vincent Schlumberger](https://github.com/vischlum)
 
 ## Mandatory part
 * Execution of commands with arguments and path management
