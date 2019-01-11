@@ -74,8 +74,8 @@ int		exec_regular(t_cmds *cmd, t_shell *shell)
 	if ((ret = prerun_cmd(cmd, shell)))
 		return (ret);
 	ret = dispatch_cmd(cmd->cmd, shell, FORK_IT);
-	restore_fd_original_state(shell);
 	rebuild_fd(cmd->redirlst);
+	restore_fd_original_state(shell);
 	return (ret);
 }
 

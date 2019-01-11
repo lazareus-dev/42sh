@@ -62,7 +62,10 @@ void	restore_fd_original_state(t_shell *shell)
 	while (i < 3)
 	{
 		if (shell->fd_orig[i] != -1)
+		{
+			dup2(shell->fd_orig[i], i);
 			close(shell->fd_orig[i]);
+		}
 		i++;
 	}
 }
