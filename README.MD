@@ -39,8 +39,8 @@ Made with love and care by [Thibault Le Cozanet](https://github.com/lazareus-dev
 
 ## References
 This a list of ressources we found useful in making this project.
-- [PDF of the subject](https://cdn.intra.42.fr/pdf/pdf/845/42sh.en.pdf)
-- [PDF of The Norm](https://cdn.intra.42.fr/pdf/pdf/1065/norme.en.pdf)
+- [PDF of the subject](42sh.en.pdf)
+- [PDF of The Norm](norme.en.pdf)
 - [POSIX Base Specifications](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/contents.html) (IEEE 1003.1-2017), especially the [Shell Grammar](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
 - [GNU Termcap Manual](https://www.gnu.org/software/termutils/manual/termcap-1.3/html_chapter/termcap_toc.html), especially the [Definitions of Terminal Capabilities](https://www.gnu.org/software/termutils/manual/termcap-1.3/html_chapter/termcap_4.html)
 - [*The Linux Programming Interface* (first edition), Michael Kerrisk, No Starch Press (2010), ISBN 978-1-59327-220-3](https://nostarch.com/tlpi)
